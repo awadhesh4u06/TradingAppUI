@@ -1,0 +1,45 @@
+<form>
+    <div mat-dialog-content class="content my-class">
+    <div class="app-dialog-title" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+      <h4 class="modal-title" id="modal-basic-title" style="width: 621px;">FY Funds</h4>  
+      <button type="button" class="close" aria-label="Close"  (click)="closepage()">  
+        <span aria-hidden="true">x</span>  
+      </button>  
+    </div>  
+     <div class="app-dialog-panel"> 
+   <div>
+    <label class="col-sm-4 col-form-label">Credit: {{printcredit}}</label> 
+    <label class="col-sm-4 col-form-label">Debit: {{printdebit}}</label>  
+    <label class="col-sm-4 col-form-label">Balance: {{printtot}}</label>    
+   </div>
+    <table class="app-table-rows-15" mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="srno">
+        <th mat-header-cell *matHeaderCellDef>S.N.</th>
+        <td mat-cell *matCellDef="let element; let i = index;"  style="width:50px;"> {{ i + 1 }} </td>
+    </ng-container>
+      <ng-container matColumnDef="fy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> FYear </th>
+        <td mat-cell *matCellDef="let element" style="width:125px;"> {{element.fy}} </td>
+      </ng-container>
+      <ng-container matColumnDef="debit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Debit </th>
+          <td mat-cell *matCellDef="let element"   style="width:120px;"> {{element.debit }} 
+            
+          </td>
+        </ng-container>
+      <ng-container matColumnDef="credit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit </th>
+          <td mat-cell *matCellDef="let element"
+           style="width:50px;" > {{element.credit}} </td>
+        </ng-container>
+        <ng-container matColumnDef="balance">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Balance </th>
+          <td mat-cell *matCellDef="let element"
+           style="width: 50px;" > {{element.balance}} </td>
+        </ng-container> 
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table> 
+  </div>
+  <div></div></div>
+  </form>

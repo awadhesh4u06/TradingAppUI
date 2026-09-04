@@ -1,0 +1,30 @@
+<div mat-dialog-content class="content my-class" style="padding:0; position:relative;" id="resizable-dialog">
+  <div class="mat-dialog-title" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+    <label class="col-sm-4 col-form-label">{{nameshare}}{{FY}} </label>
+    <button type="button" class="close" aria-label="Close" style="float:right;padding-top: 0;padding-right: 0;"  (click)="closepage()">
+      <span aria-hidden="true" style="font-size: 20px;">x</span>
+    </button>
+  </div>
+ 
+
+
+<!-- <div class="mb-8 row"> 
+    <label class="col-sm-2"> Chart Type: </label>
+    <div class="col-sm-3">     
+        <select class="form-control" id="ddldir" name="ddldir"  (change) ="LoadchartData()">        
+            <option value="bar">Bar</option>      
+             <option value="pie">Pie</option> 
+            <option value="doughnut">Doughnut</option> 
+           </select>
+    </div>     
+  </div> -->
+
+  
+
+<div class="chart-container"> 
+  <canvas  id="_icgraph" >{{ chart }}</canvas>
+</div>
+
+
+
+</div>

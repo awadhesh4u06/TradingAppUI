@@ -1,0 +1,81 @@
+
+
+<header>
+ 
+  <nav
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+      <!-- <a class="navbar-brand" [routerLink]="['/']">AngularApp </a> -->
+      <a class="navbar-brand">{{usernames}} </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="isExpanded"
+        (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+        [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow">
+          <li
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link text-dark" [routerLink]="['/sectorsymbollist']">Home</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/trade-book']">TradeBook</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/buysell-shares']">Buy/Sell</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/get-funds']">Funds</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/amc']">AMC</a>
+          </li> 
+             <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/generate-query']">Query</a>
+          </li> 
+          <li class="nav-item dropdown">
+            <a class="nav-link text-dark">Reports</a>      
+            <div class="dropdown-content" id="dvcontent">
+              
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/fy-report']">FY</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/sector-report']">Sector Report</a>
+          </li>
+              <li class="nav-item"  [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/intrest-certificate']">IC </a>
+              </li>
+              <li class="nav-item"  [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/icgraph']">IC Graph</a>
+              </li>
+              <li class="nav-item"  [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/lic']">LIC</a>
+               
+              <!-- </li>  
+                <li id="dvline" style="display: none;" class="nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark"  [routerLink]="['/line-chart']">line-chart</a>
+              </li> -->
+              <li id="dvline"style="display: none;" class="nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/medical-record']">Medical Records</a>
+              </li>
+            </div>            
+        </li> 
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link text-dark" [routerLink]="['/logout']">Logout</a>
+        </li>     
+        </ul>
+      </div>
+      
+    </div>
+  </nav>
+</header>

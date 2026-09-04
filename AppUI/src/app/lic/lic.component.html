@@ -1,0 +1,119 @@
+<form [formGroup]="frmlic"><div class="app-dialog-panel">  
+  <div class="row" style="width: inherit">  
+        <mat-form-field appearance="outline" >
+      <mat-label>Select Policy</mat-label> 
+     <mat-select id="ddlsect" (selectionChange) ="Selectval($event.value)">        
+     <mat-option
+     *ngFor="let option of _dataSource"   [value]="option.id">
+       {{option['policyName']}}
+     </mat-option>
+    </mat-select>
+    </mat-form-field>
+</div>
+<div>    
+    <input type="date" name="startDate" formControlName="startDate" style="line-height: 2.5;
+      border: var(--bs-border-width) solid #a09a9a;width:auto;" [ngModel]="currentStringDate"
+      (change)="processChange($event)" class="form-control" id="startDate"/>      
+</div>
+<br/>
+<div class="row">     
+<mat-form-field appearance="outline" style="width:auto">       
+  <mat-label>Amount</mat-label>         
+    <input matInput   type="number" name="amtwithGST" value="0" placeholder="Amount" formControlName="amtwithGST">
+</mat-form-field> 
+</div>
+<div class="row">     
+<mat-form-field appearance="outline" style="width:auto">       
+  <mat-label>Cashback</mat-label>         
+    <input matInput   type="number" name="casebackAmt" value="0" placeholder="Cash Back" formControlName="casebackAmt">
+</mat-form-field> 
+</div>
+<div class="row">     
+  <mat-form-field appearance="outline" style="width:auto">       
+    <mat-label>RD Int Amt</mat-label>         
+      <input matInput   type="number" name="amtRd" value="0" placeholder="Intrest on RD" formControlName="amtRd">
+  </mat-form-field> 
+  </div>
+  <div class="row">     
+    <mat-form-field appearance="outline" style="width:auto">       
+      <mat-label>RD Ac No</mat-label>         
+        <input matInput  name="rD_ACNO"   placeholder="RD Ac No" formControlName="rD_ACNO">
+    </mat-form-field> 
+    </div>
+<div class="example-button-row"> 
+<button mat-flat-button color="primary" (click)="SaveDataVal()" >Submit</button>
+ 
+   
+</div>
+</div>   
+</form>  
+ 
+<div style="padding-left: 10px;padding-right: 10px;">
+    <table class="app-table-large" mat-table [dataSource]="dataSource" matSort>
+  
+        <ng-container matColumnDef="policyName">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header> Policy Name</th>
+            <td mat-cell *matCellDef="let element">
+               {{element.policyName}} </td>     
+          </ng-container>
+      <ng-container matColumnDef="policyNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Policy Number </th>
+        <td mat-cell *matCellDef="let element"> 
+         <label>{{element.policyNumber}}</label>
+        </td>
+      </ng-container>
+      <!-- sector Column -->
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Start Date</th>
+        <td mat-cell *matCellDef="let element">
+           {{ element.startDate}} </td>     
+      </ng-container>
+
+      <ng-container matColumnDef="sumInsurance">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Sum Insurance</th>
+        <td mat-cell *matCellDef="let element">
+           {{element.sumInsurance}} </td>     
+      </ng-container>
+      <ng-container matColumnDef="timePeriod">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Period</th>
+        <td mat-cell *matCellDef="let element">
+        <span (click)="ShowDetails(element.id,element.policyName)">
+          <label style="color:red;font-weight: bold;cursor: pointer;">{{element.intPaid}}</label><b>||</b>
+          <label style="color:blue;font-weight: bold;cursor: pointer;">{{element.timePeriod}}</label>   
+        </span>
+      </td>   
+        </ng-container>
+      <ng-container matColumnDef="amtwithGST">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Amt</th>
+        <td mat-cell *matCellDef="let element">
+           {{element.amtwithGST}} </td>     
+      </ng-container>
+      <ng-container matColumnDef="casebackAmt">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>CashBack</th>
+        <td mat-cell *matCellDef="let element">
+           {{element.casebackAmt}} </td>     
+      </ng-container>
+      <ng-container matColumnDef="amtRd">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>RD Amt</th>
+        <td mat-cell *matCellDef="let element">
+           {{element.amtRd}} </td>     
+      </ng-container>
+      <ng-container matColumnDef="intPaid">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Inst. Paid</th>
+        <td mat-cell *matCellDef="let element">
+           {{element.intPaid}} </td>     
+      </ng-container>
+      <ng-container matColumnDef="maturtydate">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Maturty Date</th>
+        <td mat-cell *matCellDef="let element">
+           {{element.maturtydate}} </td>     
+      </ng-container>
+     
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table> 
+    <mat-paginator length="100" #paginator [pageSizeOptions]="[20,30,40,60,80]"
+                   showFirstLastButtons
+                   aria-label="Select page">
+    </mat-paginator>
+  </div> 

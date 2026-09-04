@@ -1,0 +1,10 @@
+table {
+    font-size: 12pt;
+  }
+  .divd>label{ 
+    cursor: pointer;
+    width: 100%;
+  }
+  tr.mat-mdc-footer-row td {
+  font-weight: bold;
+}

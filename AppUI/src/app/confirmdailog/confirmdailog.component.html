@@ -1,0 +1,18 @@
+
+<div mat-dialog-content class="content my-class">
+  
+  <div class="app-dialog-title" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+    <h4 class="modal-title" id="modal-basic-title" style="width: 97%;">  {{title}}</h4>  
+     
+  </div> 
+      <div class="app-dialog-panel"> 
+  <div mat-dialog-content>
+    <p>{{message}}</p>
+  </div>
+  
+  <div mat-dialog-actions>
+    <button class="btn btn-danger"   (click)="onDismiss()">No</button>
+    <button   class="btn btn-primary" (click)="onConfirm()">Yes</button>
+  </div>
+</div>
+</div>

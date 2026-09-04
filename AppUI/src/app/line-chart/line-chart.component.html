@@ -1,0 +1,13 @@
+<div class="mb-8 row"> 
+    <label class="col-sm-1"> Chart Type: </label>
+    <div class="col-sm-2">     
+        <select class="form-control" id="ddldir" name="ddldir"  (change) ="LoadchartData()">         
+            <option value="bar">Bar</option>
+            <option value="line">Line</option>    
+              
+           </select>
+    </div>
+</div>
+<div class="chart-container">
+    <canvas  id="MyChart" >{{ chart }}</canvas>
+</div>

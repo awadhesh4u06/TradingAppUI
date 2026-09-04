@@ -1,0 +1,29 @@
+.my-class .mat-dialog-container{
+    height: 400px;
+    width: 600px;
+    border-radius: 10px;
+    background: lightcyan;
+    color: #039be5;
+  }
+
+  .app-dialog-panel{ 
+  
+    width: 400px;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow-x: hidden;
+  }
+.close {
+    position: absolute;
+    top: -1;
+    right: -1;
+    padding: 5px;
+    line-height: 14px;
+    min-width: auto;  
+    border-radius: 10px;
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    font-weight: bold; 
+    font-size: large;
+  }

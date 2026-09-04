@@ -1,0 +1,25 @@
+ 
+
+
+<div class="mb-8 row"> 
+    <label class="col-sm-1"> Chart Type: </label>
+    <div class="col-sm-2">     
+        <select class="form-control" id="ddldir" name="ddldir"  (change) ="LoadchartData()"> 
+            <option value="pie">Pie</option> 
+            <option value="bar">Bar</option>  
+            <option value="doughnut">Doughnut</option> 
+           </select>
+    </div>
+    <label class="col-sm-1"> Remove PPF: </label> 
+       <div class="col-sm-2"> 
+        
+        <input type="checkbox"  (change)="RemovePPF()" id="chkppf"/>
+        
+
+    </div>
+  </div>
+
+  
+<div class="chart-container"> 
+    <canvas  id="_icgraph" >{{ chart }}</canvas>
+</div>

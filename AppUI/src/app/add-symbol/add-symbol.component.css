@@ -1,0 +1,54 @@
+.content {
+    padding-top: 10px;
+  }
+  .row {
+    display: flex;
+    gap: 10px; 
+  }  
+  .example-form {
+    min-width: 200px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+   
+  button {
+    margin-right: 8px;
+  }
+  .close-button{
+    float: right;
+    top:-15px;
+    right:-8px;
+    position:relative;
+    font-size: xx-large;
+  
+    background:transparent;
+    color:black;
+    border-color: transparent;
+    /* border-radius: 47% */
+  }
+  .flex-container { display: flex;
+    justify-content: space-between;
+  align-items: center;
+  }
+  
+  .mat-selected {
+    background: darkblue !important;
+    color: lightgray !important;
+  }
+  
+  .mat-selecte-default {
+    background: darkblue !important;
+    color: lightgray !important;
+  }  
+
+  .my-class {
+    height: auto;
+    width: 400px;
+    border-radius: 10px;
+    /* background: lightcyan; */
+    color: #039be5;
+  }

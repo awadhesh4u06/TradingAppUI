@@ -1,0 +1,155 @@
+
+<div style="display: inline-flex;">&nbsp;
+<mat-form-field class="_cls-width"> <mat-label>Select Sector</mat-label> 
+ <mat-select id="ddlsect" (selectionChange) ="Selectval($event.value)">
+   <mat-option value="none">None</mat-option> 
+   <mat-option value="ipo">IPO</mat-option>     
+ <mat-option *ngFor="let option of _symbolList"   [value]="option.sector">
+   {{option['sector']}}
+ </mat-option></mat-select></mat-form-field>
+&nbsp;  <mat-form-field class="cls-width1"> 
+  <input matInput (keyup)="applyFilter($event)" id="filter" placeholder="Seach Data"  #input>
+  </mat-form-field>  &nbsp; 
+ <mat-form-field appearance="fill" class="cls-width">
+  <mat-label>Select Options</mat-label>
+  <mat-select #userSelect  multiple  (selectionChange) ="Select_val($event.value)">
+    <mat-option *ngFor="let option of userlist" [value]="option.userid">      
+       {{option['username']}}     
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <mat-checkbox [(ngModel)]="checked" 
+  class="mat-accentedited" (change)="SelectActive($event.checked)"></mat-checkbox> 
+
+  <mat-label class="printheader">&nbsp;PL= {{printRL}}</mat-label>
+  <mat-label class="printheader">&nbsp; D= {{printdiv}}</mat-label>
+  <mat-label class="printheader">&nbsp; DP = {{printdp}}</mat-label>
+  <mat-label class="printheader">&nbsp; B= {{printbrok}}</mat-label>
+  <mat-label class="printheader">&nbsp; F= {{printfinal}}</mat-label>
+  <mat-label class="printheader">&nbsp; F+D= {{printfinal_div}}</mat-label>
+  <mat-label class="printheader">&nbsp; OV= {{openval}}</mat-label>
+  <mat-label class="printheader">&nbsp; %= {{printper}}</mat-label>
+  <mat-label class="printheader1">&nbsp;|| Total.= {{printfin_tot}}</mat-label>
+  <mat-label class="printheader1">&nbsp; Active= {{printfin_act}}</mat-label> 
+  <label  class="myBtn" style="display: none;" (click)="opendata()">&nbsp; Advance Search</label> 
+</div>
+  <br/>
+  <div>
+    <table class="app-table-rows-15 app-table-hover" mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Symbol </th>
+        <td mat-cell *matCellDef="let element" id="{{element.symbol}}"  
+        [matTooltip]="element.symbol" class="divsymbl" 
+         style="width: 150px;" > 
+         <label (click)="ShowTradeLot(element.symbol)">{{element.aka}}</label>
+        </td>
+      </ng-container>
+  
+      
+  
+      <!-- sector Column -->
+      <ng-container matColumnDef="sector">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header> Sector </th>
+        <td mat-cell *matCellDef="let element" [matTooltip]="element.sector"  class="{{element.clsName}}"
+          style="width: 150px;"  >
+           {{element.secaka}} </td>
+ 
+      </ng-container>
+    <!-- Div Column -->
+ 
+   <ng-container matColumnDef="qty">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header  style="width: 70px; "> Qty </th>
+    <td mat-cell *matCellDef="let element"  class="{{element.clsName}}"  
+     style="width: 70px; "> {{element.qty}} </td>
+  </ng-container>
+    
+  <ng-container matColumnDef="buyValue">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; "> Buy Value </th>
+    <td mat-cell *matCellDef="let element"  class="{{element.clsName}}"  style="width: 75px; "> {{element.buyValue}} </td>
+  </ng-container>
+  <ng-container matColumnDef="sellValue">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header  style="width: 75px; "> Sell Value </th>
+    <td mat-cell *matCellDef="let element"  class="{{element.clsName}}"   style="width: 75px; "> {{element.sellValue}} </td>
+  </ng-container>
+  <ng-container matColumnDef="realPL">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; "> Real PL </th>
+    <td mat-cell *matCellDef="let element"  class="{{element.clsName}}"  style="width: 75px; "> {{element.realPL}} </td>
+  </ng-container>
+  <ng-container matColumnDef="divident">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px;">Div.</th>
+    <td mat-cell *matCellDef="let element"  class="divd" style="width: 75px; "> 
+      <label (click)="ShowDivDetails(element.symbol,element.divident)">{{element.divident}}
+         </label></td>
+  </ng-container>
+  <ng-container matColumnDef="real_Div">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; ">Real+Div</th>
+    <td mat-cell *matCellDef="let element" style="width: 75px; " class="{{element.clsName}}" > {{element.real_Div}} </td>
+  </ng-container>
+  <ng-container matColumnDef="buy_Share">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; "> Buy / Share </th>
+    <td mat-cell *matCellDef="let element"  class="{{element.clsName}}"  style="width: 75px; "> {{element.buy_Share}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="sell_Share">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; "> Sell / Share </th>
+    <td mat-cell *matCellDef="let element"  class="{{element.clsName}}" style="width: 75px; " > {{element.sell_Share}} </td>
+  </ng-container>
+  <ng-container matColumnDef="openQty">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; "> Open Qty </th>
+    <td mat-cell *matCellDef="let element"  class="{{element.clsName}}"  style="width: 75px; "> {{element.openQty}} </td>
+  </ng-container>
+  <ng-container matColumnDef="openVal">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; ">Open Val </th>
+    <td mat-cell *matCellDef="let element"  class="{{element.clsName}}"  style="width: 75px; "> {{element.openVal}} </td>
+  </ng-container>
+ 
+   
+  <ng-container matColumnDef="brokerage">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; ">Brok</th>
+    <td mat-cell *matCellDef="let element" class="divd"  style="width: 75px; ">  
+      <label (click)="ShowBrokerage(element.symbol,element._brokg)">{{element._brokg}} </label>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="dp">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; ">DP</th>
+    <td mat-cell *matCellDef="let element" style="width: 75px; " class="divd" > 
+      <label (click)="ShowDPDetails(element.symbol,element.dp)"> {{element.dp}} </label>
+      </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="op">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; ">OP</th>
+    <td mat-cell *matCellDef="let element"  style="width: 75px; "  class="{{element.clsName}}" > {{element.op}} </td>
+  </ng-container>
+  <ng-container matColumnDef="oP_Div">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; ">OP +Div</th>
+    <td mat-cell *matCellDef="let element"  class="{{element.clsName}}" style="width: 75px; " > {{element.oP_Div}} </td>
+  </ng-container>
+  <ng-container matColumnDef="profit_Share">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; ">Pr/Sh</th>
+    <td mat-cell *matCellDef="let element"  class="{{element.clsName}}"  style="width: 75px; "> {{element.profit_Share}} </td>
+  </ng-container>
+  <ng-container matColumnDef="profitPer">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Pro %</th>
+    <td mat-cell *matCellDef="let element"  class="{{element.clsName}}" > {{element.profitPer}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="protWeight">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 75px; ">Wet.</th>
+    <td mat-cell *matCellDef="let element"  class="{{element.clsName}}" style="width: 75px; " > {{element.protWeight}} </td>
+  </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator length="100" #paginator [pageSizeOptions]="[30,40,50,60,80,100,125,150,175]"
+                   showFirstLastButtons
+                   aria-label="Select page">
+    </mat-paginator>
+  </div>
+
+  

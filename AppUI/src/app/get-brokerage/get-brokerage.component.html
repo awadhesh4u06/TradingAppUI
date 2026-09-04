@@ -1,0 +1,89 @@
+<form  [formGroup]="frmBrok" #forms="ngForm">
+    <div mat-dialog-content class="content my-class">
+    <div class="app-dialog-title" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+      <h4 class="modal-title" id="modal-basic-title" style="width: 97%;">Brokerage Details</h4>  
+      <button type="button" class="close" aria-label="Close" style="float: right;
+      display: inline-grid;" (click)="closepage()">  
+        <span aria-hidden="true">x</span>  
+      </button>  
+    </div>  
+     <div class="app-dialog-panel"> 
+    <div>
+      <label class="col-sm-4 col-form-label"  style="padding-left: 20px; width: auto;padding-right: 1%;">{{nameshare}}   {{printtot}}</label>    
+    </div>
+    <table class="app-table-rows-15" mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="srno">
+        <th mat-header-cell *matHeaderCellDef>S.N.</th>
+        <td mat-cell *matCellDef="let element; let i = index;"  style="width:50px;"> {{ i + 1 }} </td>
+    </ng-container>
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let element" style="width:125px;"> {{element.symbol}} </td>
+      </ng-container>
+      <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+          <td mat-cell *matCellDef="let element"   style="width:120px;"> {{element.date }} 
+            
+          </td>
+        </ng-container>
+      <ng-container matColumnDef="tradeType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>  TradeType </th>
+          <td mat-cell *matCellDef="let element"
+           style="width:50px;" > {{element.tradeType}} </td>
+        </ng-container>
+        <ng-container matColumnDef="qty">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Qty </th>
+          <td mat-cell *matCellDef="let element"
+           style="width: 50px;" class="numval"  > {{element.qty}} </td>
+        </ng-container>
+        <ng-container matColumnDef="rate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Rate </th>
+          <td mat-cell *matCellDef="let element"
+           style="width:50px;" class="numval"  > {{element.rate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="finalPrice">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> FinalPrice </th>
+            <td mat-cell *matCellDef="let element"
+             style="width:50px;" class="numval"  > {{element.finalPrice}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="brok">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Brok. </th>
+            <td mat-cell *matCellDef="let element let i = index;"
+            class="numval" style="width:100px;">
+            <label id="{{i}}_brkamtlbl" > {{element._brokg}} </label>
+             <input type="text" value="{{element._brokg}}" id="{{i}}_brkamt" style="display: none;" class="form-control"  />
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element;let i = index"> 
+
+              <button mat-icon-button matTooltip="Edit" id="{{i}}_edit" style="font-size: 19px!important;" (click)="editdata(i,element.brokid,'edit')">
+              <mat-icon class="icon_edit_button">edit</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Update" id="{{i}}_update" (click)="editdata(i,element.brokid,'update')"
+            style="display: none;" >
+              <mat-icon class="icon_update_button">done</mat-icon> 
+            </button>
+            <button mat-icon-button matTooltip="Discard" id="{{i}}_disc" (click)="editdata(i,element.brokid,'cancel')"
+             style="display: none;">
+              <mat-icon class="icon_Cancel_button">close</mat-icon>              
+            </button>
+          </td>
+          </ng-container> 
+            <ng-container matColumnDef="uName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+            <td mat-cell *matCellDef="let element"  [matTooltip]="element.uName"
+            class="{{element.clsname}}" >{{element.initialname}} </td>
+          </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator length="100" #paginator [pageSizeOptions]="[10,20]"
+                     showFirstLastButtons>
+      </mat-paginator>
+  </div>
+  <div></div></div>
+  </form>

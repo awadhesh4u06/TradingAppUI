@@ -1,0 +1,114 @@
+<form >
+    <div mat-dialog-content class="content my-class app-dialog-surface">
+    <div class="app-dialog-title" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+      <h4 class="modal-title" id="modal-basic-title" style="width:95%;padding-right:3%;">PL Details</h4>
+      <button type="button" class="app-dialog-close" aria-label="Close"  (click)="closepage()">
+        <span aria-hidden="true">x</span>  
+      </button>  
+    </div>  
+     <div class="app-dialog-panel"> 
+    <div>
+      <label class="col-form-label">{{fyear}} :  {{printtot}}</label>   &nbsp;&nbsp;
+      <label  class="myBtn" (click)="opendata('myModall')"> Sector-Wise</label>  &nbsp;&nbsp;
+     <label class="myBtn" (click)="ShowMonthly()">Monthly</label>
+    </div>
+    <div id="myModal" class="modal app-sector-overlay"  [ngClass]="{cssClass1: activeClass, cssClass2: !activeClass}" (click)="$event.stopPropagation()">
+
+      <!-- Modal content -->
+      <div class="modal-content" cdkDrag>
+      <div cdkDragHandle class="inner-modal-drag-header">
+        <span class="inner-modal-drag-title">{{fyear}}</span>
+        <mat-icon class="inner-modal-drag-icon app-dialog-icon">drag_indicator</mat-icon>
+        <button type="button" class="close" aria-label="Close sector details"
+          (pointerdown)="$event.stopPropagation()" (click)="closepop()">&times;</button>
+      </div>
+<table class="app-table-rows-15 app-table-hover" mat-table #sortCol1="matSort"  style="height: 500px; overflow: auto;" [dataSource]="dataSource1"
+ matSort matSortActive="ID" matSortDirection="asc">
+  <ng-container matColumnDef="srno">
+    <th mat-header-cell *matHeaderCellDef>S.N.</th>
+    <td mat-cell *matCellDef="let element; let i = index;"  style="width:50px;"> {{ i + 1 }} </td>
+</ng-container>
+  <ng-container matColumnDef="sector">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Sector </th>
+    <td mat-cell *matCellDef="let element"> {{element.sector}} </td>
+  </ng-container>
+  <ng-container matColumnDef="pl">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Pl </th>
+    <td mat-cell *matCellDef="let element"> {{element.pl}} </td>
+  </ng-container> 
+    <ng-container matColumnDef="divident">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Div </th>
+        <td mat-cell *matCellDef="let element"> {{element.divident}} </td>
+      </ng-container>
+      <ng-container matColumnDef="dpc">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>DP </th>
+        <td mat-cell *matCellDef="let element"> {{element.dpc}} </td>
+      </ng-container>
+      <ng-container matColumnDef="brok">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Brok </th>
+        <td mat-cell *matCellDef="let element"> {{element.brok}} </td>
+      </ng-container>
+      <ng-container matColumnDef="final">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Final </th>
+        <td mat-cell *matCellDef="let element"> {{element.final}} </td>
+      </ng-container>
+      <ng-container matColumnDef="per">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>% </th>
+        <td mat-cell *matCellDef="let element"> {{element.per}} </td>
+      </ng-container>
+  <tr mat-header-row *matHeaderRowDef="disColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: disColumns;"></tr>
+
+  </table>
+</div>
+<br/><br/></div>
+  
+
+    <table class="app-table-rows-15 app-table-hover" mat-table #sortCol2="matSort" [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="srno">
+        <th mat-header-cell *matHeaderCellDef>S.N.</th>
+        <td mat-cell *matCellDef="let element; let i = index;"  style="width:50px;"> {{ i + 1 }} </td>
+    </ng-container>
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="pl">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Pl </th>
+        <td mat-cell *matCellDef="let element"> {{element.pl}} </td>
+      </ng-container>
+        <!-- <ng-container matColumnDef="divd">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Dv. </th>
+          <td mat-cell *matCellDef="let element"> {{element.divident}} </td>
+        </ng-container> -->
+        <ng-container matColumnDef="divident">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Div </th>
+            <td mat-cell *matCellDef="let element"> {{element.divident}} </td>
+          </ng-container>
+          <ng-container matColumnDef="dpc">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>DP </th>
+            <td mat-cell *matCellDef="let element"> {{element.dpc}} </td>
+          </ng-container>
+          <ng-container matColumnDef="finalBrok">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Brok </th>
+            <td mat-cell *matCellDef="let element"> {{element.finalBrok}} </td>
+          </ng-container>
+          <ng-container matColumnDef="final">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Final </th>
+            <td mat-cell *matCellDef="let element"> {{element.final}} </td>
+          </ng-container>
+          <ng-container matColumnDef="perct">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>% </th>
+            <td mat-cell *matCellDef="let element"> {{element.perct}} </td>
+          </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+   <mat-paginator length="100" #paginator [pageSizeOptions]="[20,30,40,50,60]"
+                   showFirstLastButtons
+                   aria-label="Select page">
+    </mat-paginator>
+  </div>
+  <div></div></div>
+  </form> 

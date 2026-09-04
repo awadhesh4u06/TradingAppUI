@@ -1,0 +1,84 @@
+<form [formGroup]="frmamc"><div class="app-dialog-panel">  
+     
+    <div class="mb-4 row">        
+        <label class="col-sm-2 col-form-label">From Date :</label>
+        <div class="col-sm-5" >   
+            <input type="date" name="from_Date" formControlName="from_Date" class="form-control"
+            (change)='onChange()' id="from_Date"/>      
+  </div> </div>
+  <div class="mb-4 row">
+    <label class="col-sm-2 col-form-label">To Date :</label>
+    <div class="col-sm-5" >
+    <input type="date" name="to_Date" formControlName="to_Date" (change)='onChange()'  class="form-control" id="to_Date"/>
+  </div></div>
+  <div class="mb-4 row">
+    <label class="col-sm-2 col-form-label">Posting Date :</label>
+    <div class="col-sm-5" >
+    <input type="date" name="postingDate" formControlName="postingDate"
+    
+     class="form-control" id="postingDate"/>
+  </div></div>
+  <div  class="mb-4 row">     
+    <label class="col-sm-2 col-form-label">Amount :</label>     
+    <div class="col-sm-5" >    
+        <input  class="form-control" type="number" name="amc_amount"  
+      (ngModelChange)='onChange()' id="amc_amount" 
+        formControlName="amc_amount">
+    </div>
+  </div>
+  <div  class="mb-4 row">              
+        <label class="col-sm-2 col-form-label">Remarks :</label>  
+        <div class="col-sm-8"style="height: 60px;" >   
+          <input  type="text" style="height: -webkit-fill-available;"
+          [value]="amcamount"
+           formControlName="remarks" name="remarks"  
+          class="form-control" >
+        </div>
+  </div><div class="example-button-row"> 
+    <button mat-flat-button color="primary" (click)="SaveDataVal()" >Submit</button>
+  </div>
+  </div> </form>  <br>
+
+<div style="display: inline-flex;">
+     <mat-label class="printheader">&nbsp; &nbsp;  &nbsp;     Total : {{printtot}}</mat-label>
+    </div>
+      <div style="padding-left: 10px;padding-right: 10px;">
+        <table class="app-table-large" mat-table [dataSource]="dataSource" matSort>
+      
+            <ng-container matColumnDef="from_Date">
+                <th mat-header-cell *matHeaderCellDef  mat-sort-header> From Date</th>
+                <td mat-cell *matCellDef="let element">
+                   {{element.from_Date}} </td>     
+              </ng-container>
+          <ng-container matColumnDef="to_Date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>To Date </th>
+            <td mat-cell *matCellDef="let element"> 
+             <label>{{element.to_Date}}</label>
+            </td>
+          </ng-container>
+          <!-- sector Column -->
+          <ng-container matColumnDef="postingDate">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>Posting Date</th>
+            <td mat-cell *matCellDef="let element">
+               {{ element.postingDate}} </td>     
+          </ng-container>
+   
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header> Amount</th>
+            <td mat-cell *matCellDef="let element">
+               {{element.amount}} </td>     
+          </ng-container>
+          <ng-container matColumnDef="remarks">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header> Remarks</th>
+            <td mat-cell *matCellDef="let element">
+               {{element.remarks}} </td>     
+          </ng-container>
+         
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table> 
+        <mat-paginator length="100" #paginator [pageSizeOptions]="[20,30,40,60,80]"
+                       showFirstLastButtons
+                       aria-label="Select page">
+        </mat-paginator>
+      </div>

@@ -1,0 +1,113 @@
+<form>
+  <div mat-dialog-content class="content my-class">
+    <div class="app-dialog-title" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+      <h4 class="modal-title" id="modal-basic-title" style="width:95%; padding-right:3%;">Monthly Details</h4>
+      <button type="button" class="app-dialog-close" aria-label="Close" (click)="closepage()">
+        <span aria-hidden="true">x</span>
+      </button>
+    </div>
+  </div> 
+<div class="scroll-container">
+  <table class="app-table-rows-15 mat-elevation-z8" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+    <!-- Month -->
+    <ng-container matColumnDef="monthName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Month</th>
+      <td mat-cell *matCellDef="let element" class="month-row" (click)="toggleMonth(element)">
+        {{element.monthName}}
+        <mat-icon>{{ expandedElement === element ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </td>
+    </ng-container>
+
+    <!-- Other summary columns -->
+    <ng-container matColumnDef="pi">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>PI</th>
+      <td mat-cell *matCellDef="let element">{{element.pl}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="divident" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="width:10px;">Div</th>
+      <td mat-cell *matCellDef="let element" class="clsdiv" style="width:15px;">
+           <span (click)="ShowDetails('dv_' + element.monthName)">
+          <label style="color:blue;font-weight: bold;cursor: pointer;">{{element.divident}}</label>   
+        </span><br/>
+        <table class="tblbardv tblbar inner-table clshide" id="dv_{{element.monthName}}"   width="100%">
+            <thead>
+              <tr>
+                <!-- <th style="width:12px;">S.N.</th> -->
+                <th>Symbol</th> 
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let DR1 of element.lstdv; let k = index;">
+                <!-- <td  style="width:12px;">{{k+1}}</td> -->
+                <td>{{DR1.symbol}}</td> 
+                <td>{{DR1.amount}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dpc">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>DP</th>
+      <td mat-cell *matCellDef="let element">{{element.dpc}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="finalBrok">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Brok</th>
+      <td mat-cell *matCellDef="let element">{{element.finalBrok}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="final">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Final</th>
+      <td mat-cell *matCellDef="let element">{{element.final}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="perct">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>%</th>
+      <td mat-cell *matCellDef="let element">{{element.perct}}</td>
+    </ng-container>
+
+    <!-- Detail column -->
+    <ng-container matColumnDef="detail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+        <div *ngIf="expandedElement === element">
+          <table class="inner-table tblbar" width="100%">
+            <thead>
+              <tr>
+                <th style="width:12px;">S.N.</th>
+                <th>Symbol</th> 
+                <th>Pl</th>
+                <th>Div</th>
+                <th>DP</th>
+                <th>Brok</th>
+                <th>Final</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let DR of element._data; let j = index;">
+                <td  style="width:12px;">{{j+1}}</td>
+                <td>{{DR.symbol}}</td> 
+                <td>{{DR.pl}}</td>
+                <td style="width:40px;">{{DR.divident}}</td>
+                <td>{{DR.dpc}}</td>
+                <td>{{DR.brok}}</td>
+                <td>{{DR.final}}</td>
+                <td>{{DR.per}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Header & summary rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Detail row -->
+    <tr mat-row *matRowDef="let row; columns: detailColumns" class="detail-row"></tr>
+  </table></div>
+</form>

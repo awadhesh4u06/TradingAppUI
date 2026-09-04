@@ -1,0 +1,24 @@
+  .printheader{    color: blue; 
+    font-size: 13pt;
+  }
+  .printheader1{    color:blueviolet ; 
+    font-size: 13pt;
+  }  
+  .app-dialog-panel{    
+    width: 80%;    
+    padding-left: 25%;
+  }
+
+  .example-button-row {
+    display: table-cell;
+    max-width: 600px;
+  }
+  
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }  

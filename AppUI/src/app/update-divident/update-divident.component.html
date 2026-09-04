@@ -1,0 +1,49 @@
+<form [formGroup]="frmDiv" #forms="ngForm" (ngSubmit)="SaveDataVal()">
+  
+      <div class="app-dialog-title" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+        <h4 class="modal-title" id="modal-basic-title">Add Divident</h4>  
+        <button type="button" class="close" aria-label="Close"  (click)="closepage()">  
+          <span aria-hidden="true">x</span>  
+        </button>  
+      </div> 
+      <br/>  <div class="app-dialog-panel"> 
+
+
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-5">
+          <input type="hidden" id="id" name="id" value="{{data.id}}">       
+          <input type="text" name="name" value="{{nameshare}}" readonly="true"  formControlName="name" onkeypress="return false"
+          class="form-control" id="name"  />
+        </div>
+      </div>
+    
+      <div class="mb-4 row">
+        <label class="col-sm-2 col-form-label">Date</label>
+        <div class="col-sm-5">
+        <input type="date" name="depositeDate"   (change)="processChange($event)"
+         [ngModel]="currentStringDate"
+         class="form-control" id="depositeDate"/>
+      </div></div>
+      <div class="mb-4 row">
+        <label class="col-sm-2 col-form-label">Nos</label>
+        <div class="col-sm-5">  
+        <input type="number"  name="nos" value="0"   formControlName="nos"  (change)="calamount()"
+         class="form-control" id="nos" />
+      </div></div>
+      <div class="mb-4 row">
+        <label  class="col-sm-2 col-form-label">Div/Sh.</label>  <div class="col-sm-5">  
+        <input type="number" name="divpershare" value="0"  formControlName="divpershare"  (change)="calamount()"
+         class="form-control" id="divpershare" />
+        </div></div>
+      <div class="mb-4 row">
+        <label  class="col-sm-2 col-form-label">Amount</label>
+        <div class="col-sm-5"> 
+        <input type="number" name="amount" value= "{{addDivdata.divpershare*addDivdata.nos}}"   onkeypress="return false"
+         class="form-control"   formControlName="amount" />
+        </div></div>
+
+          <button type="button" (click)="SaveDataVal()" class="btn btn-primary">Update</button>
+    </div>
+      </form>
+    

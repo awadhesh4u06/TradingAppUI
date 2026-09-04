@@ -1,0 +1,133 @@
+.clsgreen{
+    background-color: chartreuse;
+}
+.clspink{
+    background-color:lightpink;
+}
+.clsyellow{
+    background-color:yellow;
+}
+.divd{
+    background-color:lightgray;
+    /* cursor: pointer; */
+}
+.divsymbl{
+  background-color:AliceBlue;
+  /* cursor: pointer; */
+}
+.divd>label{ 
+  cursor: pointer;
+  width: 100%;
+}
+.divsymbl>label{ 
+  cursor: pointer;
+  width: 100%;
+}
+table {
+    width: 90%;    
+  }
+ table th{
+    background-color:skyblue;
+    border: solid darkgray 1px!important;
+    padding-left: 4px;
+    padding-right: 2px;
+    text-align: center;
+  }
+  table td{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    border: solid black 1px!important;
+    text-align: left;
+    padding-left: 8px;
+    padding-right: 2px;
+    
+  }
+._cls-width{
+      width: 210px;
+ }
+ .cls-width{
+      width: 142px;
+ }
+ .cls-width1{
+      width: 150px;
+ }
+  .mat-mdc-table { 
+    white-space: nowrap; 
+}
+  .mat-accentedited { 
+    --mdc-checkbox-selected-hover-icon-color: #0d6efd !important;
+    --mdc-checkbox-selected-icon-color:  #0d6efd !important;
+    
+}
+.mdc-checkbox__background{
+  border-color: #0d6efd  !important;
+    background-color:#0d6efd  !important;
+
+}
+  .printheader{    color: blue;
+     /* font-family: 'Times New Roman', Times, serif;  */
+    font-size: 10pt;
+    font-weight: bold;
+  }
+  .printheader1{    color:blueviolet ;
+     /* font-family: 'Times New Roman', Times, serif;  */
+    font-size: 11pt;
+    font-weight: bold;
+  
+  }
+ 
+  .mat-mdc-option{
+    padding-left: 5px;
+    padding-right: 5px;
+    min-height: 34px; 
+  }
+  /* .mdc-list-item__primary-text{
+    position: fixed;
+    background: white;
+  } */
+
+  .cdk-global-scrollblock{
+    position: absolute!important;
+  }
+
+  .modal-content {
+  /* background-color: #fefefe; */
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 55%;
+}
+.modal {
+  display: none; /* Hidden by default */
+  /*  position: fixed;Stay in place */
+  /* z-index: 1; Sit on top */
+  padding-top: 100px; /* Location of the box */
+  /* left: 0; */
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+ .cssClass1{
+  display: block;
+ }
+ .close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  padding-left: 90%;
+  padding-top: 0px;;
+}  
+
+.myBtn{
+  color:chocolate;
+  cursor: pointer;
+}

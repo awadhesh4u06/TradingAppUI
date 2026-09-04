@@ -1,0 +1,51 @@
+.my-class .mat-dialog-container{
+    height:auto;
+    width: aoto;
+    min-height: 300px;;
+    border-radius: 10px;
+    background: lightcyan;
+    color: #039be5;
+    overflow: hidden;
+  }
+  
+
+ /* .mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: var(--mdc-dialog-container-shape, 4px);
+} */
+  .app-dialog-panel{   
+    width:auto;
+    padding-left: 5px;
+    padding-right: 5px;
+   padding-bottom: 5px;;
+  }
+/* Border */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgb(255, 255, 255);
+  /* background-color: white; */
+}
+/* Font color */
+input.mat-input-element {
+  color: rgb(0, 0, 0);
+}  button {
+  margin-right: 8px;
+}
+.close-button{
+  float: right;
+  top:-15px;
+  right:-8px;
+  position:relative;
+  font-size: xx-large;
+
+  /* background:transparent; */
+  color:black;
+  border-color: transparent;
+  /* border-radius: 47% */
+}
+.my-class {
+  height: auto;
+  width: 260px;
+  border-radius: 10px;
+  /* background: lightcyan; */
+  /* color: #039be5; */
+}
+ 

@@ -1,0 +1,47 @@
+
+/* Remove fixed height/width for dialog, use only background and border radius */
+.my-class .mat-dialog-container {
+  border-radius: 10px;
+  background: lightcyan;
+  color: #039be5;
+  min-width: 600px;
+  min-height: 550px;
+  max-width: 65vw;
+  /* box-shadow: 0 8px 32px rgba(0,0,0,0.2); */
+  overflow: hidden !important;
+}
+
+.chart-container {
+  width: 80vw !important; 
+  max-width: 900px;
+  height: 300px !important;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden !important;
+} 
+.close {
+    min-width: auto;  
+    /* border-radius: 10px; */
+    background-color: transparent;
+    border: transparent;
+    color: rgb(29, 27, 27);
+    font-weight: bold; 
+    font-size: large;
+  }
+.myBtn{
+  color: #126e85;
+  cursor: pointer;float: right;
+    padding-right: 10px;
+}
+.draggable-dialog .mat-dialog-title {
+    cursor: move!important;
+    -webkit-user-select: none;
+    user-select: none;
+    background: #039be5!important;
+    padding: 5px 17px;
+    margin: 0; 
+    font-weight: bold;
+    border-radius: 4px 4px 0 0;
+}

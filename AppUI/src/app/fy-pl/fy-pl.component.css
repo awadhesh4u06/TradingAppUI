@@ -1,0 +1,86 @@
+.my-class .mat-dialog-container{
+    height:auto;
+    width: aoto;
+    min-height: 300px;;
+    border-radius: 10px;
+    background: lightcyan;
+    color: #039be5;
+    overflow: hidden;
+  }
+  .app-dialog-panel{   
+    width:auto;
+    padding-left: 5px;
+    padding-right: 5px;
+   padding-bottom: 5px;
+   height:auto;
+   max-height:650px;
+   overflow-y:auto;
+  }
+.numval{
+    text-align: left;
+  }
+  /* Border */
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgb(255, 255, 255);
+  }
+  input.mat-input-element {
+  color: rgb(0, 0, 0);
+  }
+  .material-icons {  font-size: 19px!important; }
+  .mat-icon {height: auto!important;width: auto!important;}
+
+ 
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  padding-top: 100px; /* Location of the box */
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  /* background-color: #fefefe; */
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 55%;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 120px);
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  padding-left: 90%;
+  padding-top: 0px;;
+}
+.myBtn{
+  color: #126e85;
+  cursor: pointer;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+ .cssClass1{
+  display: block;
+ }
+ 

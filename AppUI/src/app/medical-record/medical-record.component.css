@@ -1,0 +1,13 @@
+.medical-record-page .chart-container {
+  min-height: 420px;
+  width: 100%;
+  position: relative;
+}
+
+.medical-record-page .form-label {
+  font-weight: 600;
+}
+
+.medical-record-page table {
+  margin-bottom: 0;
+}

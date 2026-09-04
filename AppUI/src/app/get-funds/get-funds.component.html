@@ -1,0 +1,92 @@
+<!-- <form [formGroup]="frmbst" #forms="ngForm" (ngSubmit)="SaveDataVal()"> -->
+  <form [formGroup]="frmbst"><div class="app-dialog-panel">  
+  <div class="row">     
+      <mat-form-field appearance="outline">       
+        <mat-label>Particulars</mat-label>         
+          <input matInput type="text" placeholder="Particulars" formControlName="Perticlar" name="Perticlar">
+      </mat-form-field> 
+  </div>
+  <div>    
+      <input type="date" name="partidate" formControlName="partidate" style="line-height: 2.5;
+        border: var(--bs-border-width) solid #a09a9a;width:auto;" [ngModel]="currentStringDate"
+        (change)="processChange($event)" class="form-control" id="partidate"/>      
+</div>
+<br/>
+<div class="row">     
+  <mat-form-field appearance="outline" style="width:auto">       
+    <mat-label>Debit</mat-label>         
+      <input matInput   type="number" name="debit" value="0" placeholder="Debit" formControlName="debit">
+  </mat-form-field> 
+</div>
+<div class="row">     
+  <mat-form-field appearance="outline" style="width:auto">       
+    <mat-label>Credit</mat-label>         
+      <input matInput   type="number" name="credit" value="0" placeholder="Credit" formControlName="credit">
+  </mat-form-field> 
+</div>
+<div class="example-button-row"> 
+  <button mat-flat-button color="primary" (click)="SaveDataVal()" >Submit</button>
+  <label (click)="opendailogfy()" class="btn btn-success">FY-Fund</label>
+     
+</div>
+</div>   <br>
+<div style="display: inline-flex;">
+  <mat-form-field>
+    <mat-label>Select</mat-label> 
+   <mat-select id="ddlsect" (selectionChange) ="Selectval($event.value)">
+     <mat-option value="none">None</mat-option>     
+     <mat-option value="Debit">Debit</mat-option>   
+     <mat-option value="Credit">Credit</mat-option>   
+  </mat-select>
+  </mat-form-field>
+  
+    &nbsp;     <mat-form-field>
+      <input matInput (keyup)="applyFilter($event)" id="filter" placeholder="Seach Data" autocomplete="off"  #input>
+    </mat-form-field>    <mat-label class="printheader">&nbsp; Total : {{printtot}}</mat-label>
+  
+<mat-label class="printheader">&nbsp; Total Credit= {{printcredit}}</mat-label>
+  <mat-label class="printheader">&nbsp; Total Debit = {{printdebit}}</mat-label>
+  <mat-label class="printheader">&nbsp; Investment = {{printtot}}</mat-label>
+</div>
+      <br/>
+      <div style="padding-left: 10px;padding-right: 10px;">
+        <table class="app-table-large" mat-table [dataSource]="dataSource" matSort>
+      
+            <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef  mat-sort-header> username</th>
+                <td mat-cell *matCellDef="let element">
+                   {{element.username}} </td>     
+              </ng-container>
+          <ng-container matColumnDef="particulars">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Particulars </th>
+            <td mat-cell *matCellDef="let element"> 
+             <label>{{element.particulars}}</label>
+            </td>
+          </ng-container>
+          <!-- sector Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>Date</th>
+            <td mat-cell *matCellDef="let element">
+               {{element.date}} </td>     
+          </ng-container>
+   
+          <ng-container matColumnDef="debit">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>Debit(Withd.) </th>
+            <td mat-cell *matCellDef="let element">
+               {{element.debit}} </td>     
+          </ng-container>
+          <ng-container matColumnDef="credit">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header>Credit(Added)</th>
+            <td mat-cell *matCellDef="let element">
+               {{element.credit}} </td>     
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table> 
+        <mat-paginator length="100" #paginator [pageSizeOptions]="[20,30,40,60,80]"
+                       showFirstLastButtons
+                       aria-label="Select page">
+        </mat-paginator>
+      </div>
+    </form>

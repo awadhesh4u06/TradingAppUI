@@ -1,0 +1,109 @@
+
+<div style="display: inline-flex;">
+    &nbsp;  &nbsp;     <mat-form-field>
+        <input matInput (keyup)="applyFilter($event)" id="filter" placeholder="Seach Data"  #input>
+      </mat-form-field>    <mat-label class="printheader">&nbsp; Total : {{printtot}}</mat-label>
+    </div>
+      <br/>
+      <div style="padding-left: 10px;padding-right: 10px;">
+
+
+        <table class="app-table-standard" mat-table [dataSource]="dataSource" matSort>
+      
+            <!-- <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef  mat-sort-header> Username</th>
+                <td mat-cell *matCellDef="let element">
+                   {{element.username}} </td>     
+              </ng-container> -->
+          <ng-container matColumnDef="bank">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Bank </th>
+            <td mat-cell *matCellDef="let element"> 
+             <label>{{element.bank}}</label>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="acType">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header> Ac Type </th>
+            <td mat-cell *matCellDef="let element">
+               {{element.acType}} </td>     
+          </ng-container>
+          <ng-container matColumnDef="amt">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header> Amt </th>
+            <td mat-cell *matCellDef="let element">
+               {{element.amt}} </td>     
+          </ng-container>
+          <ng-container matColumnDef="acTypedetail" >
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header class="tblcol"> Ac Details </th>
+            <td mat-cell *matCellDef="let element" class="tblcol"> 
+                <table id="{{element.tblid}}"class="tblbar dataTable display "> 
+                   <thead>
+                  <tr><th (click)="Sortcolumn(element.tblid)">
+                    Sr No <span class="dt-column-order" role="button"></span>
+                  </th>
+                    <th (click)="Sortcolumn(element.tblid)" >
+                      Ac No <span class="dt-column-order" role="button"></span>
+                    </th>
+                    
+                      <th (click)="Sortcolumn(element.tblid)" *ngIf="element.acType === 'IWish'">
+                        Ac Type <span class="dt-column-order" role="button"></span>
+                      </th>  
+                        <th (click)="Sortcolumn(element.tblid)" *ngIf="element.acType === 'IWish' || element.acType === 'FD'">
+                        Tat <span class="dt-column-order" role="button"></span>
+                      </th>  
+                    <th *ngIf="(element.acType != 'PPF') && (element.acType != 'SAVING')"  (click)="Sortcolumn(element.tblid)">                    
+                    RoI <span class="dt-column-order" role="button"></span>
+                    </th >                 
+                    <th (click)="Sortcolumn(element.tblid)" *ngIf="(element.acType != 'SAVING')">
+                      DepositAmt <span class="dt-column-order" role="button"></span>
+                    </th>
+                    <th (click)="Sortcolumn(element.tblid)">
+                      Int. Amt <span class="dt-column-order" role="button"></span>
+                     </th> 
+                    <th (click)="Sortcolumn(element.tblid)" *ngIf="(element.acType != 'SAVING')">
+                      FinalAmt <span class="dt-column-order" role="button"></span>
+                    </th>
+                  </tr>
+                </thead><tbody>
+                <tr  *ngFor="let DR of element.icdata ; let i = index;">     
+                  <td>{{i+1}}</td>               
+                  <td>
+                     <label id="lbl_{{[DR.acNo]}}" class="divd" (click)="ShowFy(DR.acNo)"> 
+                    {{[DR.acNo]}}
+                  </label>
+                   </td>
+                   <td *ngIf="element.acType === 'IWish'">
+                    {{[DR.acType]}}
+                   </td> 
+                     <td *ngIf="element.acType === 'IWish'||element.acType ===  'FD'"> 
+                       <label style="color:green;font-weight: bold;cursor: pointer;">{{[DR.startDate]}}  to {{[DR.endDate]}}</label><b> ||</b>
+                      <label style="color:blue;font-weight: bold;cursor: pointer;"> {{[DR.tat]}}</label>   
+                   </td> 
+                   <td  *ngIf="(element.acType != 'PPF') && (element.acType != 'SAVING')">
+                    {{[DR.roi]}}
+                   </td>
+                   <td *ngIf="(element.acType != 'SAVING')">
+                    {{[DR.depositeamt]}}
+                   </td>
+                   <td >
+                    {{[DR.amt]}}           
+                   </td>
+                   <td *ngIf="(element.acType != 'SAVING')">
+                    {{[DR.finalAmt]}}
+                   </td>
+                </tr></tbody>
+              </table> 
+              </td>     
+          </ng-container>
+   
+          
+              
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table> 
+        <mat-paginator length="100" #paginator [pageSizeOptions]="[22,30,40,60,80]"
+                       showFirstLastButtons
+                       aria-label="Select page">
+        </mat-paginator>
+      </div>
+
+
+      

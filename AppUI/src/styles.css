@@ -1,0 +1,270 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+    --app-dialog-accent: #039be5;
+    --app-dialog-surface: lightcyan;
+    --app-dialog-radius: 10px;
+    --app-table-hover: aqua;
+}
+
+/* Shared dialog primitives. Keep size and positioning rules in component styles. */
+.app-dialog-surface {
+    border-radius: var(--app-dialog-radius);
+    background: var(--app-dialog-surface);
+    overflow: hidden;
+}
+
+.app-dialog-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-left: 15px;
+    background-color: var(--app-dialog-accent);
+    color: white;
+    font-weight: bold;
+    cursor: move;
+    user-select: none;
+}
+
+.app-dialog-close {
+    min-width: auto;
+    background: transparent;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}
+
+.app-dialog-icon {
+    height: auto !important;
+    width: auto !important;
+    font-size: 19px !important;
+}
+
+.app-table-row:hover > td,
+tr.app-table-row:hover > td {
+    background-color: var(--app-table-hover);
+}
+
+.app-table-standard {
+    width: 90%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.app-table-standard th,
+.app-table-large th,
+.app-table-rows-15 th,
+.app-table-standard th.mat-mdc-header-cell,
+.app-table-large th.mat-mdc-header-cell,
+.app-table-rows-15 th.mat-mdc-header-cell {
+    background-color: skyblue !important;
+    border: solid darkgray 1px !important;
+    padding-left: 4px;
+    padding-right: 2px;
+    text-align: center;
+}
+
+.app-table-standard td,
+.app-table-large td,
+.app-table-rows-15 td {
+    font-family: Arial, Helvetica, sans-serif;
+    border: solid black 1px;
+    text-align: left;
+    padding-left: 8px;
+    padding-right: 2px;
+}
+
+.app-table-standard td {
+    font-size: 13px;
+}
+
+.app-table-rows-15 td {
+    font-size: 13px;
+}
+
+.app-table-large {
+    width: 90%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.app-table-large td {
+    font-size: 14px;
+}
+
+.app-table-standard tr,
+.app-table-rows-15 tr {
+    height: 17pt;
+}
+
+.app-table-large tr {
+    height: 20pt;
+}
+
+.app-table-hover tr.mat-mdc-row:hover > td {
+    background-color: var(--app-table-hover);
+}
+
+.app-transparent-backdrop {
+    background: transparent !important;
+}
+
+.app-sector-overlay {
+    background: transparent !important;
+    pointer-events: none;
+}
+
+.app-sector-overlay .modal-content {
+    pointer-events: auto;
+    display: block !important;
+}
+
+.app-sector-overlay .inner-modal-drag-header {
+    display: flex;
+    align-items: center;
+    width: 100% !important;
+    min-width: 0;
+    box-sizing: border-box;
+    cursor: move !important;
+    user-select: none;
+    touch-action: none;
+}
+
+.app-sector-overlay .inner-modal-drag-title {
+    width: auto;
+    white-space: nowrap;
+}
+
+.app-sector-overlay .close {
+    margin-left: auto;
+    flex: 0 0 auto;
+    padding: 0 4px;
+    border: 0;
+    background: transparent;
+    color: #aaaaaa;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Shared Material popup rules used by the existing popup templates. */
+.my-class .app-dialog-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    background-color: var(--app-dialog-accent);
+    color: white;
+    font-weight: bold;
+}
+
+.my-class .close,
+.my-class .app-dialog-close {
+    min-width: auto;
+    background-color: transparent;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}
+
+.my-class .app-dialog-panel {
+    width: auto;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+.my-class table tr {
+    height: 15pt;
+}
+
+.my-class .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white;
+}
+
+.my-class input.mat-input-element {
+    color: black;
+}
+
+.app-dialog-drag-handle {
+    cursor: move;
+    user-select: none;
+    touch-action: none;
+}
+
+.app-dialog-drag-handle:active {
+    cursor: grabbing;
+}
+
+.inner-modal-drag-header {
+    display: flex;
+    align-items: center;
+    cursor: move;
+    user-select: none;
+    touch-action: none;
+    width: 100%;
+}
+
+.inner-modal-drag-title {
+    display: inline-block;
+}
+
+.inner-modal-drag-icon {
+    margin-left: 6px;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    opacity: 0.55;
+}
+
+   .name-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px !important;
+     /*height: 25px;
+    background-color: #4caf7c63 !important; */
+    color: rgb(39 36 36);
+    border-radius: 47%;
+    font-size: 12px; 
+    border: 2px solid rgb(58, 54, 54)            
+}
+/* Unique styles for each user */
+.user0 { background-color:lightpink!important; } 
+.user { background-color:#2ecc71!important; }   
+.user1 { background-color: #3498db!important; }  
+.user2 { background-color: #cbd04d!important; }   
+.user3 { background-color: #ff4081ba!important;}  /* Green */
+.user4 { background-color: #f1c40f!important; }  /* Yellow */
+.user5 { background-color: #9b59b6!important; }  /* Purple */
+.user6 { background-color: #1abc9c!important; }  /* Teal */
+
+/* Draggable Angular Material Dialog */
+.draggable-dialog .mat-dialog-container {
+    width: auto !important;
+    height: auto !important;
+    min-width: 300px;
+    max-width: 90vw;
+    min-height: 100px;
+    max-height: 90vh;
+    padding: 0;
+    overflow: visible;
+    position: relative;
+}
+
+.draggable-dialog .mat-dialog-title {
+    cursor: move;
+    user-select: none;
+    background: #f5f5f5;
+    padding: 12px 24px;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+    border-radius: 4px 4px 0 0;
+}

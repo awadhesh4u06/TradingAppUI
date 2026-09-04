@@ -1,0 +1,65 @@
+.my-class .mat-dialog-container{
+    height:auto;
+    width:auto;
+    /* border-radius: 10px; */
+    /* background: lightcyan; */
+    color: #039be5;
+    overflow-x: hidden;
+  }
+  .mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+  }
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color:rgb(66, 134, 244); 
+    background-color:rgb(66, 134, 244) ;
+  }
+  
+  
+  
+  
+  .mat-mdc-radio-button.mat-accent {
+    --mdc-radio-disabled-selected-icon-color: #000;
+    --mdc-radio-disabled-unselected-icon-color: #000;
+    --mdc-radio-unselected-hover-icon-color: #212121;
+    --mdc-radio-unselected-icon-color: rgba(0, 0, 0, 0.54);
+    --mdc-radio-unselected-pressed-icon-color: rgba(0, 0, 0, 0.54);
+    --mdc-radio-selected-focus-icon-color: rgb(66, 134, 244);
+    --mdc-radio-selected-hover-icon-color: rgb(66, 134, 244);
+    --mdc-radio-selected-icon-color: : rgb(66, 134, 244);
+    --mdc-radio-selected-pressed-icon-color:: rgb(66, 134, 244);
+    --mat-radio-ripple-color: #000;
+    --mat-radio-checked-ripple-color: rgb(66, 134, 244);
+    --mat-radio-disabled-label-color: rgba(0, 0, 0, 0.38);
+}
+  .app-dialog-panel{   
+    /* width: auto;
+    min-width: 600px;
+    padding-left: 5%;  */
+    /* overflow-x: hidden; */
+    /* border:1px solid gray; */
+    width: 80%;
+    padding-top: 2%;
+    padding-left: 20%;
+  }
+.close {
+    position: absolute;
+    top: -1;
+    right: -1;
+    padding: 5px;
+    line-height: 14px;
+    min-width: auto;  
+    border-radius: 10px;
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    font-weight: bold; 
+    font-size: large;
+  } 
+.mat-mdc-dialog-surface mdc-dialog__surface {
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.clserror{
+  border-color: red;
+}

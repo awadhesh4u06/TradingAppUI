@@ -1,0 +1,43 @@
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+  
+  <div  mat-dialog-content class="content my-class">
+    <div class="container my-4">
+      <div class="row">
+        <mat-form-field appearance="outline">       
+          <mat-label>Symbol Name</mat-label>         
+            <input matInput type="text" placeholder="Symbol" formControlName="symbolname">
+        </mat-form-field> 
+    </div> 
+    <div class="row">
+      <mat-form-field appearance="outline" class="example-full-width">   <mat-label>Sector Name</mat-label>        
+          <input matInput type="text" (blur)="processChange($event)" 
+          [formControl]="sector_name" placeholder="sectorname"
+           formControlName="sectorname" [matAutocomplete]="auto" >
+           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="Selectval($event.option.value)">
+            <mat-option 
+            *ngFor="let option of filteredOptions | async"  [value]="option.sector">
+              {{option['sector']}}
+            </mat-option>
+          </mat-autocomplete>
+      </mat-form-field> 
+  </div> 
+  <div class="row">
+    <mat-form-field appearance="outline" class="example-full-width">   <mat-label>Color Name</mat-label>        
+      <mat-select id="ddlcolor" name="ddlcolor" formControlName="ddlcolor"(selectionChange) ="Select_val($event.value)">       
+      <mat-option
+      *ngFor="let option of colorList" [value]="option.colorname">
+        {{option['colorname']}}
+      </mat-option>
+     </mat-select>
+    </mat-form-field> 
+</div> 
+
+  <div mat-dialog-actions>
+   
+    <button mat-raised-button  (click)="closeDialog()">Close</button> 
+    <button  mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+</div>
+    </div>
+  </div>   
+    </form>
+  

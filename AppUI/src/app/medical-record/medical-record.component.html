@@ -1,0 +1,90 @@
+<div class="medical-record-page container py-4">
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label class="form-label">Parameter</label>
+      <select class="form-control" [(ngModel)]="selectedParam" (change)="onSelectionChange()">
+        <option *ngFor="let item of parameterOptions" [value]="item.key">{{ item.label }}</option>
+      </select>
+    </div>
+    <div class="col-sm-2">
+      <label class="form-label">Top records</label>
+      <select class="form-control" [(ngModel)]="selectedTop" (change)="onSelectionChange()">
+        <option *ngFor="let top of topOptions" [value]="top">{{ top === 0 ? 'All' : 'Top ' + top }}</option>
+      </select>
+    </div>
+    <div class="col-sm-3">
+      <label class="form-label">Chart type</label>
+      <select class="form-control" [(ngModel)]="selectedChartType" (change)="onSelectionChange()">
+        <option *ngFor="let type of chartTypeOptions" [value]="type.key">{{ type.label }}</option>
+      </select>
+    </div>
+    <div class="col-sm-2 d-flex align-items-end">
+      <button class="btn btn-primary w-100" (click)="loadMedicalRecords()" [disabled]="isLoading">
+        {{ isLoading ? 'Loading...' : 'Reload' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="row mb-3" *ngIf="error">
+    <div class="col">
+      <div class="alert alert-danger">{{ error }}</div>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col">
+      <div class="alert alert-secondary py-2 mb-3" role="status">
+        {{ recordSummary }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col">
+      <div class="chart-container">
+        <canvas id="MedicalChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="table-responsive">
+        <table class="table table-sm table-striped table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th class="sortable-header" (click)="sortGrid('processDate')">
+                Date {{ getSortIcon('processDate') }}
+              </th>
+              <th class="sortable-header" (click)="sortGrid('sgpt')">
+                SGPT {{ getSortIcon('sgpt') }}
+              </th>
+              <th class="sortable-header" (click)="sortGrid('sgot')">
+                SGOT {{ getSortIcon('sgot') }}
+              </th>
+              <th class="sortable-header" (click)="sortGrid('creat')">
+                Creat {{ getSortIcon('creat') }}
+              </th>
+              <th class="sortable-header" (click)="sortGrid('bun')">
+                BUN {{ getSortIcon('bun') }}
+              </th>
+              <th class="sortable-header" (click)="sortGrid('ggt')">
+                GGT {{ getSortIcon('ggt') }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of displayedRecords">
+              <td>{{ record.processDate | date: 'dd-MM-yyyy' }}</td>
+              <td>{{ record.sgpt }}</td>
+              <td>{{ record.sgot }}</td>
+              <td>{{ record.creat }}</td>
+              <td>{{ record.bun }}</td>
+              <td>{{ record.ggt }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

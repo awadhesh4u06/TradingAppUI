@@ -1,0 +1,66 @@
+<form  #forms="ngForm" [formGroup]="frmDPC">
+    <div mat-dialog-content class="content my-class">
+    <div class="app-dialog-title" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+      <h4 class="modal-title" id="modal-basic-title" style="width:96%">DP Charges</h4>  
+      <button type="button" class="close" aria-label="Close"  (click)="closepage()">  
+        <span aria-hidden="true">x</span>  
+      </button>  
+    </div>  
+     <div class="app-dialog-panel"> 
+    <div>
+      <label class="col-sm-4 col-form-label">{{nameshare}} -  {{printtot}}</label>    
+    </div>
+    <table class="app-table-rows-15" mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="srno">
+        <th mat-header-cell *matHeaderCellDef>S.N.</th>
+        <td mat-cell *matCellDef="let element; let i = index;"  style="width:20px;"> {{ i + 1 }} </td>
+    </ng-container>
+      <ng-container matColumnDef="posting_Date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.posting_Date }} 
+            
+          </td>
+        </ng-container>
+      <ng-container matColumnDef="debit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Debit </th>
+          <td mat-cell *matCellDef="let element  let i = index;"
+           style="width:100px;" ><!--  {{element.debit}}  -->
+           <label id="{{i}}_debitlbl" > {{element.debit}} </label>
+           <input type="text" value="{{element.debit}}" id="{{i}}_debitamt" style="display: none;"
+             class="form-control"/>
+          </td>
+        </ng-container> 
+        <ng-container matColumnDef="remarks">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks </th>
+          <td mat-cell *matCellDef="let element"
+           > {{element.remarks}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element;let i = index"> 
+
+            <button mat-icon-button matTooltip="Edit" id="{{i}}_edit" style="font-size: 19px!important;" (click)="editdata(i,element.dP_Id,'edit')">
+            <mat-icon class="icon_edit_button">edit</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Update" id="{{i}}_update" (click)="editdata(i,element.dP_Id,'update')"
+          style="display: none;" >
+            <mat-icon class="icon_update_button">done</mat-icon> 
+          </button>
+          <button mat-icon-button matTooltip="Discard" id="{{i}}_disc" (click)="editdata(i,element.dP_Id,'cancel')"
+           style="display: none;">
+            <mat-icon class="icon_Cancel_button">close</mat-icon>            
+          </button>
+        </td>
+        </ng-container>
+            <ng-container matColumnDef="uname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+            <td mat-cell *matCellDef="let element"  [matTooltip]="element.uname"
+            class="{{element.clsname}}" >{{element.initialname}} </td>
+          </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+ 
+  </div>
+  <div></div></div>
+  </form>

@@ -1,0 +1,42 @@
+.my-class .mat-dialog-container{
+    height:auto;
+    width: aoto;
+    min-height: 300px;;
+    border-radius: 10px;
+    background: lightcyan;
+    color: #039be5;
+    overflow: hidden;
+  }
+
+  table th{ 
+    border-bottom: solid gray 1px!important;
+    padding-bottom: 1px;
+  }
+ /* .mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: var(--mdc-dialog-container-shape, 4px);
+} */
+  .app-dialog-panel{   
+    width:auto;
+    padding-left: 5px;
+    padding-right: 5px;
+   padding-bottom: 5px;;
+  }
+.close { 
+    min-width: auto;   
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    font-weight: bold; 
+    font-size: large;
+  }
+  .numval{
+    text-align: left;
+  }
+  .clsgreen{
+    color: green;
+    font-size: initial;
+  }
+  .clsred{
+    color:red;
+    font-size: initial;
+  }
