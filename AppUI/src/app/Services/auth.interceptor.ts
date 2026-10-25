@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const token = this.authService.getToken();
 
     if (typeof token === 'string' && token.trim().length > 0 && !this.authService.canMakeRequest()) {
-      this.authService.logout();
+      this.authService.logout('IDLE_TIMEOUT_LOGOUT');
       this.router.navigate(['/login']);
       return throwError(() => new Error('Session expired after 30 minutes of inactivity.'));
     }
@@ -36,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
           // Token expired or invalid
-          this.authService.logout(); // clear token, user info
+          this.authService.logout('UNAUTHORIZED_LOGOUT'); // clear token, user info
           this.router.navigate(['/login']); // redirect to login page
         }
         return throwError(() => error);

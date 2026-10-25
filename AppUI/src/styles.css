@@ -13,7 +13,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /* Shared dialog primitives. Keep size and positioning rules in component styles. */
 .app-dialog-surface {
     border-radius: var(--app-dialog-radius);
-    background: var(--app-dialog-surface);
+    background: transparent;
     overflow: hidden;
 }
 
@@ -54,6 +54,9 @@ tr.app-table-row:hover > td {
     width: 90%;
     padding-left: 10px;
     padding-right: 10px;
+}
+.modal .app-table-rows-15 th.mat-mdc-header-cell1 {
+    background-color: #e0e0e0cf !important;
 }
 
 .app-table-standard th,
@@ -267,4 +270,10 @@ tr.app-table-row:hover > td {
     border-bottom: 1px solid #ddd;
     font-weight: bold;
     border-radius: 4px 4px 0 0;
+}
+
+/* Wider variant for the IC FY detail popup */
+.ic-fy-detail-dialog-panel .mat-dialog-container {
+    min-width: 500px;
+    width: 650px !important;
 }

@@ -68,7 +68,19 @@
           [formGroupName]="i"
           class="tbl_tr_match">
 
-        <td>{{ item.get('columnName')?.value }}</td>
+        <td>
+          {{ item.get('columnName')?.value }}
+          <select
+            *ngIf="needsUserSelection(item.get('columnName')?.value)"
+            class="form-select form-select-sm mt-1"
+            [formControl]="userIdControl"
+            (change)="onUserSelectionChange()">
+            <option [ngValue]="0">-- Select User --</option>
+            <option *ngFor="let user of userList" [ngValue]="user.userid">
+              {{ user.username }} ({{ user.userid }})
+            </option>
+          </select>
+        </td>
         <td><input type="checkbox" formControlName="isMatched"></td>
         <td><input type="checkbox" formControlName="isIntColumn"></td>
         <td><input type="checkbox" formControlName="isDateColumn"></td>
@@ -125,11 +137,13 @@
 <div *ngIf="message" class="mt-2">
   <div
     #messageAlert
-    class="alert alert-info alert-dismissible fade show"
+    class="alert alert-dismissible fade show"
+    [class.alert-danger]="messageIsError"
+    [class.alert-info]="!messageIsError"
     role="alert"
     tabindex="-1">
     {{ message }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <button type="button" class="btn-close" (click)="message = ''"></button>
   </div>
 </div>
 <!--failed  -->

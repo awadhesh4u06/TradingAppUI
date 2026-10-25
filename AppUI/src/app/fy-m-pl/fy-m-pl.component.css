@@ -141,6 +141,20 @@ th, td {
   cursor: pointer;
   font-weight: bold;
 }
+
+/* Keep the expand icons centered with their month and dividend values. */
+.month-row .mat-icon,
+.clsdiv .mat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px !important;
+  height: 18px !important;
+  margin-left: 6px;
+  font-size: 18px !important;
+  line-height: 18px;
+  vertical-align: middle;
+}
 /* Wrap the table in a scrollable container */
 .scroll-container {
   max-height: 500px;   /* adjust height as needed */

@@ -11,6 +11,7 @@ export interface BuySellTrade {
     tradeid: string,
     userid: number,
     brokerage: number,
+    broker: string,
     symbolid: number,
     isipo: boolean,
  }

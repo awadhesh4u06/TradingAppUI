@@ -1,0 +1,86 @@
+<div class="fy-dialog-title" mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+  <span>Details - {{data.acNo}}</span>
+  <button type="button" class="fy-dialog-close" aria-label="Close" (click)="closepage()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div><div mat-dialog-content class="fy-dialog-content">
+  <table class="fy-dialog-table fy-add-table" *ngIf="addingNew">
+    <tbody>
+      <tr class="fy-add-row">
+        <td class="add-srno">1</td>
+        <td>
+          <select [(ngModel)]="newFy" class="fy-select">
+            <option *ngFor="let f of fyOptions" [value]="f">{{f}}</option>
+          </select>
+        </td>
+        <td *ngIf="data.showDepositAmt">
+          <input type="number" class="fy-edit-input" [(ngModel)]="newDepositAmt" placeholder="Dep. Amt">
+        </td>
+        <td>
+          <input type="number" class="fy-edit-input" [(ngModel)]="newIntAmt" placeholder="Int. Amt">
+        </td>
+        <td class="col-edit">
+          <button type="button" mat-icon-button (click)="saveNew()" [disabled]="saving" aria-label="Save" title="Save">
+            <mat-icon class="row-edit-icon">check</mat-icon>
+          </button>
+          <button type="button" mat-icon-button (click)="cancelAddNew()" aria-label="Cancel" title="Cancel">
+            <mat-icon class="row-edit-icon">close</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table mat-table [dataSource]="data.records" class="fy-dialog-table">
+    <ng-container matColumnDef="srno">
+      <th mat-header-cell *matHeaderCellDef>S.N.</th>
+      <td mat-cell *matCellDef="let element; let i = index;"> {{ i + 1 }} </td>
+    </ng-container>
+    <ng-container matColumnDef="fy">
+      <th mat-header-cell *matHeaderCellDef> FY </th>
+      <td mat-cell *matCellDef="let element"> {{element.fy}} </td>
+    </ng-container>
+    <ng-container matColumnDef="depositAmt">
+      <th mat-header-cell *matHeaderCellDef> Dep. Amt </th>
+      <td mat-cell *matCellDef="let element; let i = index;">
+        <input *ngIf="editingIndex === i" type="number" class="fy-edit-input" [(ngModel)]="editDepositAmt">
+        <span *ngIf="editingIndex !== i">{{element.depositAmt | number:'1.2-2'}}</span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="intAmt">
+      <th mat-header-cell *matHeaderCellDef> Int. Amt </th>
+      <td mat-cell *matCellDef="let element; let i = index;">
+        <input *ngIf="editingIndex === i" type="number" class="fy-edit-input" [(ngModel)]="editIntAmt">
+        <span *ngIf="editingIndex !== i">{{element.intAmt | number:'1.2-2'}}</span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef class="col-edit">
+        <button type="button" mat-icon-button (click)="startAddNew()" [disabled]="addingNew" aria-label="Add new FY" title="Add new FY">
+          <mat-icon class="row-edit-icon">add_circle</mat-icon>
+        </button>
+      </th>
+      <td mat-cell *matCellDef="let element; let i = index;" class="col-edit">
+        <ng-container *ngIf="editingIndex === i; else showEdit">
+          <button type="button" mat-icon-button (click)="saveEdit(element)" [disabled]="saving" aria-label="Save" title="Save">
+            <mat-icon class="row-edit-icon">check</mat-icon>
+          </button>
+          <button type="button" mat-icon-button (click)="cancelEdit()" aria-label="Cancel" title="Cancel">
+            <mat-icon class="row-edit-icon">close</mat-icon>
+          </button>
+        </ng-container>
+        <ng-template #showEdit>
+          <button type="button" mat-icon-button (click)="startEdit(i, element)" aria-label="Edit" title="Edit">
+            <mat-icon class="row-edit-icon">edit</mat-icon>
+          </button>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div class="fy-dialog-empty" *ngIf="!data.records || data.records.length === 0">No FY records found.</div>
+</div>
+

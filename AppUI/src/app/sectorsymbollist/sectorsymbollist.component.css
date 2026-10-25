@@ -1,15 +1,168 @@
+:host {
+  display: block;
+  min-height: 100%;
+  background: #f4f7f8;
+  color: #172326;
+}
+
+.symbol-page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 3vw, 2.75rem);
+}
+
+.page-header,
+.panel-toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.page-header {
+  margin-bottom: 1.75rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.4rem;
+  color: #0b756c;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0.45rem;
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  letter-spacing: -0.03em;
+}
+
+.page-subtitle,
+.panel-toolbar p {
+  margin-bottom: 0;
+  color: #647477;
+}
+
+.new-symbol-button,
+.table-action {
+  border: 0;
+  border-radius: 0.45rem;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.new-symbol-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1rem;
+  background: #0b756c;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.new-symbol-button span {
+  font-size: 1.25rem;
+  line-height: 0.8;
+}
+
+.new-symbol-button:hover,
+.table-action:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0.35rem 0.8rem rgba(23, 35, 38, 0.14);
+}
+
+.symbol-panel {
+  overflow: hidden;
+  border: 1px solid #dce6e5;
+  border-radius: 0.7rem;
+  background: #fff;
+  box-shadow: 0 0.75rem 2rem rgba(24, 54, 57, 0.06);
+}
+
+.panel-toolbar {
+  padding: 1.35rem 1.5rem 1rem;
+  border-bottom: 1px solid #e8eeee;
+}
+
+.panel-toolbar h2 {
+  margin-bottom: 0.3rem;
+  font-size: 1.15rem;
+}
+
+.filter-field {
+  width: min(100%, 22rem);
+  font-size: 0.9rem;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
 table {
+  width: 100%;
+  min-width: 680px;
+}
+
+th.mat-mdc-header-cell {
+  background: #f7faf9;
+  color: #516365;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+td.mat-mdc-cell,
+th.mat-mdc-header-cell {
+  padding: 0.9rem 1rem;
+}
+
+tr.mat-mdc-row:hover {
+  background: #f4fbfa;
+}
+
+.table-action {
+  min-width: 3.4rem;
+  padding: 0.42rem 0.7rem;
+  color: #fff;
+  font-size: 0.78rem;
+}
+
+.dividend-action,
+.buy-action {
+  background: #0b756c;
+}
+
+.sell-action {
+  background: #b64f45;
+}
+
+mat-paginator {
+  border-top: 1px solid #e8eeee;
+}
+
+@media (max-width: 700px) {
+  .page-header,
+  .panel-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .new-symbol-button,
+  .filter-field {
     width: 100%;
   }
-  
-  .mat-mdc-form-field {
-    font-size: 14px;
-    width: 100%;
+
+  .panel-toolbar {
+    padding: 1.1rem;
   }
-  
-  td, th {
-    width: 25%;
-  }
-  th.mat-sort-header-sorted {
-    color: black;
-  }
+}

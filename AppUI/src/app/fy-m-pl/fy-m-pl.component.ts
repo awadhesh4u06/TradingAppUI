@@ -39,6 +39,7 @@ export class FyMPLComponent implements OnInit {
   ];
   detailColumns: string[] = ['detail']; 
   expandedElement: TradeLotSize | null = null;
+  expandedDividendMonth: string | null = null;
   lotlist: TradeLotSize[] = [];  
   combineuserd: any; 
 
@@ -94,29 +95,10 @@ export class FyMPLComponent implements OnInit {
   toggleMonth(element: TradeLotSize) {
     this.expandedElement = this.expandedElement === element ? null : element;
   } 
-ShowDetails(id: string) {
-  const allDivs = document.getElementsByClassName('tblbardv');  
-  for (let i = 0; i < allDivs.length; i++) {
-    const div = allDivs[i] as HTMLElement;
-    // Skip the incoming id
-    if (div.id !== id) {
-      div.classList.add('clshide');   // force hide
-      div.classList.remove('clsshow');   // remove show if present
-    }
+  toggleDividendDetails(monthName: string): void {
+    this.expandedDividendMonth =
+      this.expandedDividendMonth === monthName ? null : monthName;
   }
-
-  // Toggle the target div
-  const element = document.getElementById(id);
-  if (element) {
-    if (element.classList.contains('clshide')) {
-      element.classList.remove('clshide');
-      element.classList.add('clsshow');
-    } else {
-      element.classList.remove('clsshow');
-      element.classList.add('clshide');
-    }
-  }
-}
 
   calculation(dataS: TradeLotSize[]) {
     let tot: number = 0;
@@ -135,14 +117,7 @@ ShowDetails(id: string) {
           row.perct = Number(((row.final * 100) / row.buyAmt).toFixed(2));
         }
         totfinal += row.final;
-        tot += row.pl; 
-       //  if(row._data)
-      //  { 
-          // for (let r of row._data) { 
-            
-          // }
-        
-        //}
+        tot += row.pl;      
       }
     }
     this.printtot = Number(tot.toFixed(2)); 

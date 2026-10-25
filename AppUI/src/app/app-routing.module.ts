@@ -17,6 +17,7 @@ import {ICGraphComponent} from './icgraph/icgraph.component'
 import {LICComponent} from './lic/lic.component'
 import { MedicalRecordComponent } from './medical-record/medical-record.component';
 import { GenerateQueryComponent } from './generate-query/generate-query.component';
+import { IcAccountDetailsComponent } from './ic-account-details/ic-account-details.component';
 import { AuthGuard } from './Services/auth.guard';
 const routes: Routes = [
    { path: '', component: GetUsersComponent,pathMatch:'full' },
@@ -29,6 +30,7 @@ const routes: Routes = [
    { path: 'buysell-shares', component: BuySellSharesComponent, canActivate: [AuthGuard] },
    { path: 'get-funds', component: GetFundsComponent, canActivate: [AuthGuard] },
    { path: 'intrest-certificate', component: IntrestCertificateComponent, canActivate: [AuthGuard] },
+   { path: 'ic-account-details', component: IcAccountDetailsComponent, canActivate: [AuthGuard] },
    { path: 'fy-report', component: FYReportComponent, canActivate: [AuthGuard] },
    { path: 'amc', component: AmcComponent, canActivate: [AuthGuard] },
    { path: 'sector-report', component: SectorReportComponent, canActivate: [AuthGuard] },

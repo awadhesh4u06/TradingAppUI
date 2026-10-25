@@ -1,85 +1,102 @@
-<form [formGroup]="frmbst" #forms="ngForm" style="text-align: -webkit-center;" (ngSubmit)="SaveDataVal()">
-     
-     <div class="app-dialog-panel">  
-    <div class="mb-4 row"> 
-      <label class="col-sm-2 col-form-label">Name :</label>
-      <div class="col-sm-5">     
-        <select class="form-control" id="ddlsymbol" name="ddlsymbol"> 
-          <option value="0">--Select--</option> 
-        <option *ngFor="let options of _symbolList" 
-        [value]="options.id" 
-        [selected]="options.name === nameshare">
-        {{options.name}}</option></select> 
+<form [formGroup]="frmbst" #forms="ngForm" class="trade-form" (ngSubmit)="SaveDataVal()">
+  <section class="app-dialog-panel" aria-labelledby="trade-title">
+    <header class="trade-header">
+      <div>
+        <p class="eyebrow">Trade entry</p>
+        <h1 id="trade-title">Buy / Sell shares</h1>
+        <p class="trade-subtitle">Enter the execution details below.</p>
       </div>
-    </div>
-    <div class="mb-4 row" [hidden]="true">
-        <label class="col-sm-2 col-form-label">Isin :</label>
-        <div class="col-sm-5">          
-          <input type="text" name="isin" value="{{frmbst.controls['isin']}}"   formControlName="isin"            
-          class="form-control" />
+      <span class="trade-badge">{{ flagname === 'buy' ? 'BUY' : 'SELL' }}</span>
+  </header>
+
+  <div class="trade-section">
+      <div class="field-grid">
+        <div class="field-group field-wide">
+          <label for="ddlsymbol">Symbol</label>
+          <select class="form-control" id="ddlsymbol" name="ddlsymbol">
+            <option value="0">Select a symbol</option>
+            <option *ngFor="let options of _symbolList" [value]="options.id" [selected]="options.name === nameshare">
+              {{ options.name }}
+            </option>
+          </select>
+        </div>
+        <div class="field-group" [hidden]="true">
+          <label for="isin">ISIN</label>
+          <input type="text" id="isin" name="isin" formControlName="isin" class="form-control" />
+        </div>
+        <div class="field-group" [hidden]="true">
+          <label for="tradeid">Trade ID</label>
+          <input type="text" id="tradeid" name="tradeid" formControlName="tradeid" class="form-control" />
         </div>
       </div>
-  
-      <div class="mb-4 row">
-        <label class="col-sm-2 col-form-label">TradeId :</label>
-        <div class="col-sm-5">          
-          <input type="text" name="tradeid" value="{{frmbst.controls['tradeid']}}"   formControlName="tradeid"            
-          class="form-control" />
+
+    <div class="trade-section">
+      <!-- <h2>Execution</h2> -->
+      <div class="field-grid">
+        <div class="field-group">
+          <label for="tradedate">Trade date</label>
+          <input type="date" name="tradedate" formControlName="tradedate" [ngModel]="currentStringDate"
+            (change)="processChange($event)" class="form-control" id="tradedate" />
         </div>
-      </div>
-    <div class="mb-4 row">
-      <label class="col-sm-2 col-form-label">Date :</label>
-      <div class="col-sm-5" >
-      <input type="date" name="tradedate" formControlName="tradedate" [ngModel]="currentStringDate"
-       (change)="processChange($event)" class="form-control" id="tradedate"/>
-    </div></div>
-    <div class="mb-4 row"> <label class="col-sm-2 col-form-label">Exchange :</label>
-        <div class="col-sm-5"> 
-        <mat-radio-group aria-label="Exchange" name="exchange"  formControlName="exchange" 
-        class="form-control" id="exchange" style="text-align: left;"> 
+        <div class="field-group">
+          <span class="field-label">Exchange</span>
+          <mat-radio-group aria-label="Exchange" name="exchange" formControlName="exchange" class="choice-group" id="exchange">
             <mat-radio-button value="BSE">BSE</mat-radio-button>
             <mat-radio-button value="NSE">NSE</mat-radio-button>
           </mat-radio-group>
-    </div></div>
-
-    <div class="mb-4 row"> <label class="col-sm-2 col-form-label">Type :</label>
-        <div class="col-sm-5"> 
-        <mat-radio-group aria-label="Trade Type" name="ttype" formControlName="ttype" 
-        class="form-control" style="text-align: left;" id="ttype">
-            <mat-radio-button value="Buy" checked={{buytrue}} >Buy</mat-radio-button>
-            <mat-radio-button value="Sell" checked={{selltrue}} >Sell</mat-radio-button>
+        </div>
+        <div class="field-group">
+          <span class="field-label">Trade type</span>
+          <mat-radio-group aria-label="Trade Type" name="ttype" formControlName="ttype" (change)="onTradeTypeChange()" class="choice-group" id="ttype">
+            <mat-radio-button value="Buy" [checked]="buytrue">Buy</mat-radio-button>
+            <mat-radio-button value="Sell" [checked]="selltrue">Sell</mat-radio-button>
           </mat-radio-group>
-    </div></div>
-      <div class="mb-4 row"> <label class="col-sm-2 col-form-label">IPO :</label>
-        <div class="col-sm-5"> 
-        <mat-radio-group aria-label="IPO" name="isipo" formControlName="isipo" 
-        class="form-control" style="text-align: left;" id="isipo">
-            <mat-radio-button value="0" checked={{Notrue}} >No</mat-radio-button>
+        </div>
+        <div class="field-group">
+          <span class="field-label">IPO</span>
+          <mat-radio-group aria-label="IPO" name="isipo" formControlName="isipo" class="choice-group" id="isipo">
+            <mat-radio-button value="0" [checked]="Notrue">No</mat-radio-button>
             <mat-radio-button value="1">Yes</mat-radio-button>
           </mat-radio-group>
-    </div></div>
-    <div class="mb-4 row">
-      <label  class="col-sm-2 col-form-label">Quantity :</label> 
-       <div class="col-sm-5">  
-      <input type="number" name="qty" value="0"  formControlName="qty"   class="form-control" id="qty" />
-      </div></div>
-    <div class="mb-4 row">
-      <label  class="col-sm-2 col-form-label">Price :</label>
-      <div class="col-sm-5"> 
-      <input type="number" name="price" class="form-control" formControlName="price" />
-      </div></div>
-
-      <div class="mb-4 row">
-        <label  class="col-sm-2 col-form-label">Brokerage :</label>
-        <div class="col-sm-5"> 
-        <input type="number" name="brokerage" class="form-control" formControlName="brokerage" />
-        </div></div>
-        <div class="mb-4 row" style="text-align: center">
-            <div class="col-sm-5"> 
-            <button type="button" style="width: 25%;" (click)="SaveDataVal()" 
-            class="btn btn-primary">Update</button>
         </div>
+        <div class="field-group">
+          <label for="broker">Broker</label>
+          <select id="broker" name="broker" formControlName="broker" class="form-control">
+            <option value="Zerodha">Zerodha</option>
+            <option value="AngelOne">AngelOne</option>
+            <option value="Dhan">Dhan</option>
+          </select>
+        </div>
+
+      <div class="field-grid numeric-fields">
+        <div class="field-group">
+          <label for="qty">Quantity</label>
+          <input type="number" name="qty" value="0" formControlName="qty" class="form-control" id="qty" />
+        </div>
+        <div class="field-group">
+          <label for="price">Price</label>
+          <input type="number" name="price" class="form-control" formControlName="price" id="price" />
+        </div>
+        <div class="field-group">
+          <label for="brokerage">Brokerage</label>
+          <input type="number" name="brokerage" class="form-control" formControlName="brokerage" id="brokerage" />
+        </div>
+               
+      </div>
+      <div class="field-group">
+          <label for="trade-value">Quantity × Price</label>
+          <input id="trade-value" class="form-control calculated-field" [value]="tradeValue | number:'1.2-2'" readonly />
+        </div> 
+     
+      <p class="total-value"><span>(Qty × Price) {{ brokerageOperation }} Brokerage</span><strong>{{ totalTradeValue | number:'1.2-2' }}</strong></p>
+    
+     </div>
     </div>
   </div>
-    </form>
+
+    <footer class="trade-actions">
+      <button type="submit" class="save-button">Save trade</button>
+    </footer>
+  </section>
+</form>
   

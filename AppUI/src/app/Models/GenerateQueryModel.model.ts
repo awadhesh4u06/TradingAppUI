@@ -8,6 +8,7 @@ export interface GenerateQueryModel {
   tradecolumn?: string;
   symbolcolumnname?: string;
   userid: number;
+  requesteduserid:number;
   index: number;
   sqlQuery?: string[];
   matchedColumns?: string[],

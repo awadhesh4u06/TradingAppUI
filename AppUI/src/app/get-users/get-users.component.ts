@@ -3,6 +3,7 @@ import { userdetails } from 'src/app/Models/Userdetails.model';
 import { SectorsService } from 'src/app/Services/sectors.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-get-users',
@@ -14,6 +15,7 @@ export class GetUsersComponent implements OnInit {
   selectedUserId = '';
   selectedUsername = '';
   password = '';
+  isLoggingIn = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,6 +25,10 @@ export class GetUsersComponent implements OnInit {
   ) {}
 
   Gotonext() {
+    if (this.isLoggingIn) {
+      return;
+    }
+
     if (!this.selectedUserId) {
       alert('Please select a user before login');
       return;
@@ -33,8 +39,15 @@ export class GetUsersComponent implements OnInit {
       return;
     }
 
-    this.authService.login(this.selectedUsername, this.password).subscribe({
-      next: () => {
+    this.isLoggingIn = true;
+    this.authService.login(this.selectedUsername, this.password).pipe(
+      finalize(() => this.isLoggingIn = false)
+    ).subscribe({
+      next: response => {
+        if (!response?.token) {
+          alert('Login failed: the server did not return a valid session token.');
+          return;
+        }
         this.authService.setUserId(this.selectedUserId);
         localStorage.setItem('UserName', this.selectedUsername);
         sessionStorage.setItem('UserIdd', this.selectedUserId);

@@ -1,0 +1,102 @@
+.fy-dialog-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin: 0;
+  background-color: #039be5;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: move;
+  user-select: none;
+}
+
+.fy-dialog-close {
+  min-width: auto;
+  background: transparent;
+  border: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.add-ic-content {
+  padding: 16px;
+  max-height: 65vh;
+  overflow: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.row mat-form-field {
+  flex: 1 1 200px;
+}
+
+.details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.details-header h4 {
+  margin: 0;
+  color: #0d47a1;
+}
+
+.add-ic-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.add-ic-table th {
+  background-color: #b3e5fc;
+  color: #01579b;
+  padding: 8px;
+  text-align: left;
+}
+
+.add-ic-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.add-ic-table input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+
+.fy-select {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 6px;
+  background: white;
+}
+
+.empty-row {
+  text-align: center;
+  color: #757575;
+  padding: 12px;
+}
+
+.add-ic-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+}

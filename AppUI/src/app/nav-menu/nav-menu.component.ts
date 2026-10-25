@@ -42,8 +42,7 @@ functionlivisible() {
       if(this.userid==1)
       {
         _etd.style.display='block'; 
-      }
-      
+      }      
     }
  } 
 }

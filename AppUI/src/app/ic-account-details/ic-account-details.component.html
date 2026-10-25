@@ -1,0 +1,112 @@
+<div style="display: inline-flex; align-items: center; width: 100%;">
+  &nbsp;  &nbsp;     <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" id="filter" placeholder="Seach IC Accounts"  #input>
+  </mat-form-field>    <mat-label class="printheader">&nbsp; Total : {{printtot}}</mat-label>
+  <span style="flex: 1 1 auto;"></span>
+  <button mat-raised-button color="primary" (click)="openAddDialog()" style="margin-right: 20px;">+ Add</button>
+</div>
+<br/>
+<div style="padding-left: 10px;padding-right: 10px;">
+  <table class="app-table-standard" mat-table [dataSource]="dataSource" matSort>
+    
+    <ng-container matColumnDef="bank">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Bank </th>
+      <td mat-cell *matCellDef="let element"> 
+        <label>{{element.bank}}</label>
+      </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="acType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ac Type </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.acType}} </td>     
+    </ng-container>
+    
+    <ng-container matColumnDef="amt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Amt </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.amt}} </td>     
+    </ng-container>
+
+    <ng-container matColumnDef="acDetails" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="tblcol"> Ac Details </th>
+      <td mat-cell *matCellDef="let element" class="tblcol"> 
+        <table id="{{element.tblid}}" class="tblbar dataTable display">
+          <thead>
+            <tr>
+              <th (click)="SortColumn(element.tblid)">
+                Sr No <span class="dt-column-order" role="button"></span>
+              </th>
+              <th (click)="SortColumn(element.tblid)">
+                Ac No <span class="dt-column-order" role="button"></span>
+              </th>
+              <th (click)="SortColumn(element.tblid)" *ngIf="element.acType === 'IWISH'">
+                Ac Name <span class="dt-column-order" role="button"></span>
+              </th>
+              <th (click)="SortColumn(element.tblid)" *ngIf="element.acType !== 'SAVING' && element.acType !== 'PPF'">
+                Tat <span class="dt-column-order" role="button"></span>
+              </th>
+              <th (click)="SortColumn(element.tblid)" *ngIf="element.acType !== 'SAVING' && element.acType !== 'PPF'">
+                RoI <span class="dt-column-order" role="button"></span>
+              </th>
+              <th (click)="SortColumn(element.tblid)" *ngIf="element.acType !== 'SAVING'">
+                DepositAmt <span class="dt-column-order" role="button"></span>
+              </th>
+              <th (click)="SortColumn(element.tblid)">
+                Int. Amt <span class="dt-column-order" role="button"></span>
+              </th>
+              <th (click)="SortColumn(element.tblid)" *ngIf="element.acType !== 'SAVING'">
+                FinalAmt <span class="dt-column-order" role="button"></span>
+              </th>
+              <th class="col-edit"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let detail of element.details ; let i = index;">     
+              <td>{{detail.srNo}}</td>               
+              <td>
+                <label class="divd" style="cursor: pointer; text-decoration: underline;" (click)="ShowFy(detail, element.acType)">
+                  {{detail.acNo}}
+                </label>
+              </td>
+              <td *ngIf="element.acType === 'IWISH'">
+                 {{detail.acName}}
+              </td>
+              <td *ngIf="element.acType !== 'SAVING' && element.acType !== 'PPF'">
+                <label style="color:green;font-weight: bold;cursor: pointer;">{{detail.startDate | date:'dd MMM yyyy'}} to {{detail.endDate | date:'dd MMM yyyy'}}</label><b> ||</b>
+                <label style="color:blue;font-weight: bold;cursor: pointer;"> {{detail.tat}}</label>   
+              </td>
+              <td *ngIf="element.acType !== 'SAVING' && element.acType !== 'PPF'">
+                {{detail.roi}}
+              </td>
+              <td *ngIf="element.acType !== 'SAVING'">
+                {{detail.depositAmt | number:'1.2-2'}}
+              </td>
+              <td>
+                {{detail.intAmt | number:'1.2-2'}}
+              </td>
+              <td *ngIf="element.acType !== 'SAVING'">
+                {{detail.finalAmt | number:'1.2-2'}}
+              </td>
+              <td class="col-edit" > 
+                <button type="button" *ngIf="detail.isCompleted === false" mat-icon-button class="row-edit-btn" (click)="openEditDialog(detail)" aria-label="Edit account" title="Edit">
+                  <mat-icon class="row-edit-icon">edit</mat-icon>
+                </button>
+               <button type="button" *ngIf="detail.isCompleted === true" mat-icon-button class="row-edit-btn" aria-label="Mark completed" title="Mark completed">
+                  <mat-icon class="row-edit-icon" style="color: green !important;">check_circle</mat-icon>
+                </button>
+                 </td>   
+            </tr>
+          </tbody>
+        </table>
+      </td>     
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="masterDisplayedColumns" ></tr>
+    <tr mat-row *matRowDef="let row; columns: masterDisplayedColumns;"></tr>
+  </table>
+</div>
+
+<mat-paginator [pageSizeOptions]="[10, 20,30, 100]" showFirstLastButtons></mat-paginator>
+
+

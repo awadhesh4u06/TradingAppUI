@@ -22,7 +22,7 @@
         <button type="button" class="close" aria-label="Close sector details"
           (pointerdown)="$event.stopPropagation()" (click)="closepop()">&times;</button>
       </div>
-<table class="app-table-rows-15 app-table-hover" mat-table #sortCol1="matSort"  style="height: 500px; overflow: auto;" [dataSource]="dataSource1"
+<table class="app-table-rows-15 app-table-hover " mat-table #sortCol1="matSort"  style="height: auto; overflow: auto;" [dataSource]="dataSource1"
  matSort matSortActive="ID" matSortDirection="asc">
   <ng-container matColumnDef="srno">
     <th mat-header-cell *matHeaderCellDef>S.N.</th>

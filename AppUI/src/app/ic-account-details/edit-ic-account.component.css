@@ -1,0 +1,57 @@
+.fy-dialog-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin: 0;
+  background-color: #039be5;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: move;
+  user-select: none;
+}
+
+.fy-dialog-close {
+  min-width: auto;
+  background: transparent;
+  border: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.edit-ic-content {
+  padding: 16px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.row mat-form-field {
+  flex: 1 1 180px;
+}
+
+.edit-ic-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+}
+mat-radio-button.mat-mdc-radio-checked {
+  /* Changes the color of the outer circle and inner dot */
+  --mdc-radio-selected-focus-icon-color: #007bff;
+  --mdc-radio-selected-hover-icon-color: #007bff;
+  --mdc-radio-selected-icon-color: #007bff;
+  --mdc-radio-selected-pressed-icon-color: #007bff;
+
+  /* Changes the ripple effect color when clicked */
+  --mat-radio-checked-ripple-color: #007bff;
+}

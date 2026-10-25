@@ -1,0 +1,153 @@
+.printheader {
+  font-weight: 600;
+  color: #1976d2;
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.app-table-standard {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.app-table-standard th {
+  background-color: #e3f2fd;
+  font-weight: 600;
+  color: #0d47a1;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 2px solid #1976d2;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.app-table-standard td {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 15px;
+}
+
+.app-table-standard tr:hover {
+  background-color: #f5f5f5;
+}
+
+.tblcol {
+  width: 100%;
+}
+
+.tblbar {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  margin-left: 0;
+  margin-top: 8px;
+}
+
+.tblbar thead {
+  background-color: #b3e5fc;
+}
+
+.tblbar th {
+  padding: 10px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: #01579b;
+  border-bottom: 1px solid #0d47a1;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tblbar tbody td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+}
+
+.tblbar tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+.tblbar tbody tr:last-child td {
+  border-bottom: 1px solid #0d47a1;
+}
+
+.row-edit-btn {
+  width: 28px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+  padding: 0 !important;
+}
+
+.row-edit-icon {
+  font-size: 18px !important;
+  width: 18px !important;
+  height: 18px !important;
+  line-height: 18px !important;
+  color: #1976d2;
+}
+
+.col-edit {
+  width: 36px;
+  min-width: 36px;
+  max-width: 36px;
+  padding: 4px !important;
+  text-align: center;
+}
+
+.dt-column-order {
+  margin-left: 4px;
+  color: #666;
+  font-size: 12px;
+}
+
+mat-form-field {
+  width: 300px;
+}
+
+::ng-deep .mat-mdc-paginator {
+  background-color: #f5f5f5;
+}
+
+div[style*="display: inline-flex"] {
+  padding: 12px;
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 12px;
+}
+
+div[style*="padding-left: 10px"] {
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* DataTable styling */
+::ng-deep .dataTable {
+  width: 100% !important;
+}
+
+::ng-deep .dataTable.display {
+  margin: 0 !important;
+  border-collapse: collapse;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tblbar th,
+  .tblbar td {
+    padding: 6px 4px;
+    font-size: 11px;
+  }
+  
+  .app-table-standard th,
+  .app-table-standard td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import {Symbols} from 'src/app/Models/sectors.model'
-import { Observable, catchError, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import {sectorsfilter} from 'src/app/Models/sectorsfilter.model '   
 import { AddDivident } from '../Models/AddDivident.model';
 import { tradebook } from '../Models/tradebook.model';
@@ -17,15 +17,17 @@ import {Amc} from 'src/app/Models/Amc.model';
 import { LIC } from '../Models/LIC.Model';
 import { MedicalRecord } from '../Models/MedicalRecord.model';
 import {GenerateQueryModel,QueryRequest,QueryResult} from 'src/app/Models/GenerateQueryModel.model'; 
-import {Columndetails} from 'src/app/Models/Columndetails.model'; 
+import {Columndetails} from 'src/app/Models/Columndetails.model';
+import { ICAccountMaster } from '../Models/ICAccountMaster.model';
+import { ICFYDetails } from '../Models/ICFYDetails.model';
+import { PpfFYDeposit } from '../Models/PpfFYDeposit.model'; 
 @Injectable({
   providedIn: 'root'
 })
 export class SectorsService {
-  
- pathval:  string= 'http://localhost:8080/api/trading/';
- brews :any; 
-  constructor(private http: HttpClient)  { 
+  pathval = 'http://localhost:8080/api/trading/';
+
+  constructor(private http: HttpClient) {
     const url = window.location.href;
     if (url.indexOf('4200') > -1) {
       this.pathval = 'https://localhost:44314/api/Trading/';
@@ -34,23 +36,42 @@ export class SectorsService {
     } else {
       this.pathval = 'http://localhost:8080/api/Trading/';
     }
-  }  
-    getallsectornames():Observable<Symbols[]>{     
-        var result=this.http.get<Symbols[]>(this.pathval+'GetSymbols');         
-        return result;
-     }  
-    gettablename():Observable<string[]>{     
-        var result=this.http.get<string[]>(this.pathval+'GetTableName');         
-        return result;
-     }
-   gettablecolumn(params:any):Observable<Columndetails[]>{     
-        var result=this.http.get<Columndetails[]>(this.pathval+'GetTableColumns?tableName='+params.get('tableName'));         
-        return result;
-     }
+  }
+
+  // Symbol and table metadata
+  getallsectornames(): Observable<Symbols[]> {
+    return this.http.get<Symbols[]>(this.pathval + 'GetSymbols');
+  }
+
+  gettablename(): Observable<string[]> {
+    return this.http.get<string[]>(this.pathval + 'GetTableName');
+  }
+
+  gettablecolumn(params: HttpParams): Observable<Columndetails[]> {
+    return this.http.get<Columndetails[]>(this.pathval + 'GetTableColumns', { params });
+  }
+
+  GetSymbolsFilter(): Observable<sectorsfilter[]> {
+    return this.http.get<sectorsfilter[]>(this.pathval + 'GetSymbolsFilter');
+  }
+
+  GetSectorFilter(): Observable<sectorsfilter[]> {
+    return this.http.get<sectorsfilter[]>(this.pathval + 'GetSectorFilter');
+  }
+
+  GetColorList(): Observable<sectorsfilter[]> {
+    return this.http.get<sectorsfilter[]>(this.pathval + 'GetColorList');
+  }
+
+  // User and trading data
+  getusers(): Observable<userdetails[]> {
+    return this.http.get<userdetails[]>(this.pathval + 'GetUsers');
+  }
+
     getTradebook(params:any):Observable<tradebook[]>{  
         return  this.http.get<tradebook[]>(this.pathval+'GetTradeBook?usrid='+params.get('userid')+"&combineusers="+params.get('combineusers'));     
     }
-    getDividents(divparams:HttpParams):Observable<AddDivident[]>{ 
+    getDividents(divparams:HttpParams):Observable<AddDivident[]>{
       return  this.http.get<AddDivident[]>(this.pathval+'GetDivident?symb='+divparams.get('name')+"&userid="+divparams.get('usrid')+"&combinewith="+divparams.get('combineusers'));     
        }
        getPLFy(divparams:HttpParams):Observable<TradeLotSize[]>{
@@ -99,15 +120,6 @@ export class SectorsService {
     getLotSize(lotparams:any):Observable<TradeLotSize[]>{ 
           return  this.http.get<TradeLotSize[]>(this.pathval+'GetLotsize?symb='+lotparams.get('name')+"&userid="+lotparams.get('usrid')+"&userids="+lotparams.get('userids'));          
       }
-    GetSymbolsFilter():Observable<sectorsfilter[]>{
-      return  this.http.get<sectorsfilter[]>(this.pathval+'GetSymbolsFilter');
-      }
-    GetSectorFilter():Observable<sectorsfilter[]>{
-      return  this.http.get<sectorsfilter[]>(this.pathval+'GetSectorFilter');
-      } 
-  GetColorList():Observable<sectorsfilter[]>{
-        return  this.http.get<sectorsfilter[]>(this.pathval+'GetColorList');
-    }   
     addsymboldata(addsymbols:Symbols){
       return  this.http.post<Symbols[]>(this.pathval+'SaveSymbols',addsymbols);
     }
@@ -115,12 +127,8 @@ export class SectorsService {
     SaveDividennt(divident:AddDivident){
       return  this.http.post<AddDivident[]>(this.pathval+'SaveDivident',divident);
     }
-    SaveTradebook(tradeentry:BuySellTrade){debugger;
+    SaveTradebook(tradeentry:BuySellTrade){
       return  this.http.post<BuySellTrade[]>(this.pathval+'BuySellTradeEntry',tradeentry);
-    }
-    getusers():Observable<userdetails[]>{    
-      var result=this.http.get<userdetails[]>(this.pathval+'GetUsers');         
-      return result;
     }
     GetFunddetails(userid:number):Observable<Funddetails[]>{ 
     return  this.http.get<Funddetails[]>(this.pathval+'GetFundDetail?id='+userid);     
@@ -154,6 +162,42 @@ export class SectorsService {
   }
     getDivGraphData(paramval:any):Observable<TradeLotSize[]>{ 
     return  this.http.get<TradeLotSize[]>(this.pathval+'GetDividentfybySymbol?userid='+paramval.get('usrid')+"&symb="+paramval.get('name')+"&combinewith="+paramval.get('combineusers')+"&Fy="+paramval.get('Fy'));     
+  }
+
+  getICAccountMaster(userid: number): Observable<ICAccountMaster[]> {
+    return this.http.get<ICAccountMaster[]>(this.pathval + 'GetICAccountMaster?userid=' + userid);
+  }
+
+  getICFYDetails(userid: number): Observable<ICFYDetails[]> {
+    return this.http.get<ICFYDetails[]>(this.pathval + 'GetICFYDetails?userid=' + userid);
+  }
+
+  getPpfFYDeposit(userid: number): Observable<PpfFYDeposit[]> {
+    return this.http.get<PpfFYDeposit[]>(this.pathval + 'GetPpfFYDeposit?userid=' + userid);
+  }
+
+  saveICAccountMaster(data: ICAccountMaster): Observable<number> {
+    return this.http.post<number>(this.pathval + 'SaveICAccountMaster', data);
+  }
+
+  updateICAccountMaster(data: ICAccountMaster): Observable<any> {
+    return this.http.post(this.pathval + 'UpdateICAccountMaster', data);
+  }
+
+  saveICFYDetails(data: ICFYDetails): Observable<any> {
+    return this.http.post(this.pathval + 'SaveICFYDetails', data);
+  }
+
+  updateICFYDetails(data: ICFYDetails): Observable<any> {
+    return this.http.post(this.pathval + 'UpdateICFYDetails', data);
+  }
+
+  savePpfFYDeposit(data: PpfFYDeposit): Observable<any> {
+    return this.http.post(this.pathval + 'SavePpfFYDeposit', data);
+  }
+
+  updatePpfFYDeposit(data: PpfFYDeposit): Observable<any> {
+    return this.http.post(this.pathval + 'UpdatePpfFYDeposit', data);
   }
 }
 
